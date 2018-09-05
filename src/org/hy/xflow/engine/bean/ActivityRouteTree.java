@@ -6,8 +6,10 @@ import java.util.Map;
 
 import org.hy.common.Help;
 import org.hy.common.PartitionMap;
+import org.hy.common.TablePartition;
 import org.hy.common.TablePartitionRID;
 import org.hy.xflow.engine.common.BaseModel;
+import org.hy.xflow.engine.enums.ActivityTypeEnum;
 
 
 
@@ -21,6 +23,7 @@ import org.hy.xflow.engine.common.BaseModel;
  * @author      ZhengWei(HY)
  * @createDate  2018-04-19
  * @version     v1.0
+ *              v2.0  2018-09-05  添加：支持多个结束出口的工作流程
  */
 public class ActivityRouteTree extends BaseModel
 {
@@ -34,8 +37,8 @@ public class ActivityRouteTree extends BaseModel
     /** 模板的所有路由。Map.key为活动Code */
     private PartitionMap<String ,ActivityRoute>      allRoutes;
      
-    /** 模板的所有路由。Map.key为路由Code */
-    private Map<String ,ActivityRoute>               allRoutesByCode;
+    /** 模板的所有路由。Map.key为路由ID */
+    private Map<String ,ActivityRoute>               allRoutesByID;
     
     /** 模板的所有路由。Map.key分区为活动Code ,Map主键索引为路由Code */
     private TablePartitionRID<String ,ActivityRoute> allRoutesByARCode;
@@ -49,8 +52,8 @@ public class ActivityRouteTree extends BaseModel
     /** 整个活动路由树的 "开始" 活动节点 */
     private ActivityInfo                             startActivity;
     
-    /** 整个活动路由树的 "结束" 活动节点 */
-    private ActivityInfo                             endActivity;
+    /** 整个活动路由树的 "结束" 活动节点。Map.key为活动ID。支持多个结束出口的工作流程 */
+    private Map<String ,ActivityInfo>                endActivitys;
     
     
     
@@ -61,17 +64,26 @@ public class ActivityRouteTree extends BaseModel
     {
         this.allActivitys       = i_AllActivitys;
         this.allRoutes          = i_AllRoutes;
-        this.allRoutesByCode    = new HashMap<String ,ActivityRoute>();
+        this.allRoutesByID      = new HashMap<String ,ActivityRoute>();
         this.allRoutesByARCode  = new TablePartitionRID<String ,ActivityRoute>();
         this.allActivityPs      = i_AllActivityPs;
         this.allActivityRoutePs = i_AllActivityRoutePs;
+        this.endActivitys       = new HashMap<String ,ActivityInfo>();
+        
+        if ( this.allActivityRoutePs == null )
+        {
+            this.allActivityRoutePs = new TablePartition<String ,Participant>();
+        }
         
         if ( !Help.isNull(this.allActivitys) )
         {
             this.startActivity = this.allActivitys.values().iterator().next();
             for (ActivityInfo v_Activity : this.allActivitys.values())
             {
-                this.endActivity = v_Activity;
+                if ( ActivityTypeEnum.$Finish.equals(v_Activity.getActivityTypeID()) )
+                {
+                    this.endActivitys.put(v_Activity.getActivityID() ,v_Activity);
+                }
             }
         }
         
@@ -97,7 +109,7 @@ public class ActivityRouteTree extends BaseModel
     
     
     /**
-     * 整个活动路由树的 "结束" 活动节点
+     * 整个活动路由树的 "结束" 活动节点。Map.key为活动ID。支持多个结束出口的工作流程
      * 
      * @author      ZhengWei(HY)
      * @createDate  2018-04-24
@@ -105,9 +117,9 @@ public class ActivityRouteTree extends BaseModel
      *
      * @return
      */
-    public ActivityInfo getEndActivity()
+    public Map<String ,ActivityInfo> getEndActivity()
     {
-        return this.endActivity;
+        return this.endActivitys;
     }
     
     
@@ -154,12 +166,12 @@ public class ActivityRouteTree extends BaseModel
      * @createDate  2018-05-14
      * @version     v1.0
      *
-     * @param i_ActivityRouteCode  路由编码
+     * @param i_ActivityRouteCode  路由ID
      * @return
      */
-    public ActivityRoute getActivityRoute(String i_ActivityRouteCode)
+    public ActivityRoute getActivityRoute(String i_ActivityRouteID)
     {
-        return this.allRoutesByCode.get(i_ActivityRouteCode);
+        return this.allRoutesByID.get(i_ActivityRouteID);
     }
     
     
@@ -178,9 +190,8 @@ public class ActivityRouteTree extends BaseModel
         if ( Help.isNull(allActivitys) 
           || Help.isNull(allRoutes) 
           || Help.isNull(allActivityPs)
-          || Help.isNull(allActivityRoutePs)
           || this.startActivity == null 
-          || this.endActivity   == null )
+          || Help.isNull(this.endActivitys) )
         {
             return;
         }
@@ -191,7 +202,7 @@ public class ActivityRouteTree extends BaseModel
             
             for (ActivityRoute v_Route : v_Routes.getValue())
             {
-                this.allRoutesByCode.put(v_Route.getActivityRouteCode() ,v_Route);
+                this.allRoutesByID.put(v_Route.getActivityRouteID() ,v_Route);
             }
         }
         
@@ -243,7 +254,7 @@ public class ActivityRouteTree extends BaseModel
                         {
                             // 不等于开始活动才递归。防止死循环
                         }
-                        else if ( v_NextActivity == this.endActivity )
+                        else if ( this.endActivitys.containsKey(v_NextActivity.getActivityID()) )
                         {
                             // 不等于结束活动才递归。防止死循环
                         }
