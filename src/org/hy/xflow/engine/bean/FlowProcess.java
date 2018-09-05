@@ -24,6 +24,9 @@ public class FlowProcess extends BaseModel
     private static final long serialVersionUID = -4724247321457107633L;
     
     
+    /** 内存中的动态参数：流程模板ID */
+    private String templateID; 
+    
     /** 工作流的动态参与人 */
 	private List<ProcessParticipant> participants;
 	
@@ -139,6 +142,7 @@ public class FlowProcess extends BaseModel
     
     public FlowProcess init_CreateFlow(User i_User ,FlowInfo i_Flow ,ActivityInfo i_Activity)
     {
+        this.templateID           = i_Flow.getFlowTemplateID();
         this.processID            = i_Flow.getLastProcessID();
         this.serviceDataID        = i_Flow.getServiceDataID();
         this.workID               = i_Flow.getWorkID();
@@ -182,6 +186,7 @@ public class FlowProcess extends BaseModel
     
     public FlowProcess init_ToNext(User i_User ,FlowInfo i_Flow ,FlowProcess io_Previous ,ActivityRoute i_Route)
     {
+        this.templateID              = i_Flow.getFlowTemplateID();
         this.processID               = IDHelp.makeID();
         this.serviceDataID           = i_Flow.getServiceDataID();
         this.workID                  = i_Flow.getWorkID();
@@ -1038,6 +1043,26 @@ public class FlowProcess extends BaseModel
     public void setInfoComment(String i_InfoComment)
     {
         this.infoComment = i_InfoComment;
+    }
+
+    
+    /**
+     * 获取：内存中的动态参数：流程模板ID
+     */
+    public String getTemplateID()
+    {
+        return templateID;
+    }
+    
+
+    /**
+     * 设置：内存中的动态参数：流程模板ID
+     * 
+     * @param templateID 
+     */
+    public void setTemplateID(String templateID)
+    {
+        this.templateID = templateID;
     }
 
 }
