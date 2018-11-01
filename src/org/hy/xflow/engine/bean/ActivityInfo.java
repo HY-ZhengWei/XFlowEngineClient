@@ -78,6 +78,15 @@ public class ActivityInfo extends BaseModel
 	/** 图标路径 */
     private String iconURL;
     
+    /** 活动节点的背景色 */
+    private String backgroudColor;
+    
+    /** 活动节点的边框线颜色 */
+    private String lineColor;
+    
+    /** 活动节点的标记块颜色 */
+    private String flagColor;
+    
 	/** 备注说明 */
     private String infoComment;
     
@@ -662,6 +671,66 @@ public class ActivityInfo extends BaseModel
     public void setLastTime(Date i_LastTime)
     {
         this.lastTime = i_LastTime;
+    }
+
+    
+    /**
+     * 获取：活动节点的背景色
+     */
+    public String getBackgroudColor()
+    {
+        return backgroudColor;
+    }
+
+    
+    /**
+     * 设置：活动节点的背景色
+     * 
+     * @param backgroudColor 
+     */
+    public void setBackgroudColor(String backgroudColor)
+    {
+        this.backgroudColor = backgroudColor;
+    }
+
+    
+    /**
+     * 获取：活动节点的边框线颜色
+     */
+    public String getLineColor()
+    {
+        return lineColor;
+    }
+
+    
+    /**
+     * 设置：活动节点的边框线颜色
+     * 
+     * @param lineColor 
+     */
+    public void setLineColor(String lineColor)
+    {
+        this.lineColor = lineColor;
+    }
+
+    
+    /**
+     * 获取：活动节点的标记块颜色
+     */
+    public String getFlagColor()
+    {
+        return flagColor;
+    }
+
+    
+    /**
+     * 设置：活动节点的标记块颜色
+     * 
+     * @param flagColor 
+     */
+    public void setFlagColor(String flagColor)
+    {
+        this.flagColor = flagColor;
     }
 
 }
