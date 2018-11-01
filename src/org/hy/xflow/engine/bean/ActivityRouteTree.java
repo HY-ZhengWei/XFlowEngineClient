@@ -125,7 +125,7 @@ public class ActivityRouteTree extends BaseModel
     
     
     /**
-     * 按活动ID获取活动对象。通过它可进入步获取下一步的所有节点
+     * 模板的所有活动。Map.key为活动Code
      * 
      * @author      ZhengWei(HY)
      * @createDate  2018-11-01
@@ -153,6 +153,22 @@ public class ActivityRouteTree extends BaseModel
     public ActivityInfo getActivity(String i_ActivityCode)
     {
         return this.allActivitys.get(i_ActivityCode);
+    }
+    
+    
+    
+    /**
+     * 模板的所有路由。Map.key为路由ID
+     * 
+     * @author      ZhengWei(HY)
+     * @createDate  2018-11-01
+     * @version     v1.0
+     * 
+     * @return
+     */
+    public Map<String ,ActivityRoute> getActivityRoutes()
+    {
+        return this.allRoutesByID;
     }
     
     
