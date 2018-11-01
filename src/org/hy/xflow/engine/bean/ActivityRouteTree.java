@@ -125,6 +125,22 @@ public class ActivityRouteTree extends BaseModel
     
     
     /**
+     * 按活动ID获取活动对象。通过它可进入步获取下一步的所有节点
+     * 
+     * @author      ZhengWei(HY)
+     * @createDate  2018-11-01
+     * @version     v1.0
+     *
+     * @return
+     */
+    public Map<String ,ActivityInfo> getActivitys()
+    {
+        return this.allActivitys;
+    }
+    
+    
+    
+    /**
      * 按活动ID获取活动对象。通过它可进入步获取下一步的所有节点 
      * 
      * @author      ZhengWei(HY)
