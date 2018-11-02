@@ -141,7 +141,7 @@ public class ActivityRouteTree extends BaseModel
     
     
     /**
-     * 按活动ID获取活动对象。通过它可进入步获取下一步的所有节点 
+     * 按活动编码获取活动对象。通过它可进入步获取下一步的所有节点 
      * 
      * @author      ZhengWei(HY)
      * @createDate  2018-04-19
