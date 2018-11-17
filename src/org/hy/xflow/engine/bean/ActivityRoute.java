@@ -87,6 +87,9 @@ public class ActivityRoute extends BaseModel
 	/** 有条件判定时，对比值的数据类型（1:数字；2:布尔值；3:文本） */
     private Integer conditionVType;
     
+    /** 路由连接线的颜色 */
+    private String lineColor;
+    
 	/** 备注说明 */
     private String infoComment;
     
@@ -593,7 +596,27 @@ public class ActivityRoute extends BaseModel
     }
 	
 	
-	/**
+    /**
+     * 获取：路由连接线的颜色
+     */
+    public String getLineColor()
+    {
+        return lineColor;
+    }
+
+    
+    /**
+     * 设置：路由连接线的颜色
+     * 
+     * @param lineColor 
+     */
+    public void setLineColor(String lineColor)
+    {
+        this.lineColor = lineColor;
+    }
+
+
+    /**
      * 获取：备注说明
      */
     public String getInfoComment()
