@@ -1,5 +1,5 @@
 Manifest-Version: 1.0.3
 Created-By: HY.ZhengWei@qq.com  2018
-Specification-Version: 1.0.3  2019-02-27
+Specification-Version: 1.0.3  2019-08-29
 SourceCode: https://github.com/HY-ZhengWei/XFlowEngineClient
 Build-JDK: 1.6
