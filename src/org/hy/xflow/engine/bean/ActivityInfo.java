@@ -20,6 +20,7 @@ import org.hy.xflow.engine.enums.ParticipantTypeEnum;
  * @author      ZhengWei(HY)
  * @createDate  2018-04-17
  * @version     v1.0
+ *              v2.0  2019-08-29  添加：fontColor 文字颜色的配置
  */
 public class ActivityInfo extends BaseModel
 {
@@ -86,6 +87,9 @@ public class ActivityInfo extends BaseModel
     
     /** 活动节点的标记块颜色 */
     private String flagColor;
+    
+    /** 活动节点的文字颜色 */
+    private String fontColor;
     
 	/** 备注说明 */
     private String infoComment;
@@ -731,6 +735,26 @@ public class ActivityInfo extends BaseModel
     public void setFlagColor(String flagColor)
     {
         this.flagColor = flagColor;
+    }
+
+    
+    /**
+     * 获取：活动节点的文字颜色
+     */
+    public String getFontColor()
+    {
+        return fontColor;
+    }
+
+
+    /**
+     * 设置：活动节点的文字颜色
+     * 
+     * @param fontColor 
+     */
+    public void setFontColor(String fontColor)
+    {
+        this.fontColor = fontColor;
     }
 
 }
