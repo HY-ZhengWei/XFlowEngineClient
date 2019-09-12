@@ -25,6 +25,9 @@ public class ProcessParticipant extends Participant
 	/** 工作流的过程ID */
     private String processID;
     
+    /** 分单前的过程ID。合单前持续记录ID值 */
+    private String splitProcessID;
+    
 	/** 工作流实例ID */
     private String workID;
     
@@ -52,19 +55,20 @@ public class ProcessParticipant extends Participant
      */
     public void init(User i_User ,FlowProcess i_Process ,UserParticipant i_UserPart)
     {
-        this.pwpID         = StringHelp.getUUID();
-        this.processID     = i_Process.getProcessID();
-        this.workID        = i_Process.getWorkID();
-        this.serviceDataID = i_Process.getServiceDataID();
-        this.createTime    = i_Process.getCreateTime();
-        this.createrID     = i_User.getUserID();
-        this.creater       = i_User.getUserName();
-        this.createOrgID   = i_User.getOrgID();
-        this.createOrg     = i_User.getOrgName();
-        this.objectID      = i_UserPart.getObjectID();
-        this.objectName    = i_UserPart.getObjectName();
-        this.objectType    = i_UserPart.getObjectType();
-        this.objectNo      = i_UserPart.getObjectNo();
+        this.pwpID          = StringHelp.getUUID();
+        this.processID      = i_Process.getProcessID();
+        this.splitProcessID = i_Process.getSplitProcessID();
+        this.workID         = i_Process.getWorkID();
+        this.serviceDataID  = i_Process.getServiceDataID();
+        this.createTime     = i_Process.getCreateTime();
+        this.createrID      = i_User.getUserID();
+        this.creater        = i_User.getUserName();
+        this.createOrgID    = i_User.getOrgID();
+        this.createOrg      = i_User.getOrgName();
+        this.objectID       = i_UserPart.getObjectID();
+        this.objectName     = i_UserPart.getObjectName();
+        this.objectType     = i_UserPart.getObjectType();
+        this.objectNo       = i_UserPart.getObjectNo();
     }
     
     
@@ -82,19 +86,20 @@ public class ProcessParticipant extends Participant
      */
     public void init_ToReject(User i_User ,FlowProcess i_Process ,FlowProcess i_ToRejectProcess)
     {
-        this.pwpID         = StringHelp.getUUID();
-        this.processID     = i_Process.getProcessID();
-        this.workID        = i_Process.getWorkID();
-        this.serviceDataID = i_Process.getServiceDataID();
-        this.createTime    = i_Process.getCreateTime();
-        this.createrID     = i_User.getUserID();
-        this.creater       = i_User.getUserName();
-        this.createOrgID   = i_User.getOrgID();
-        this.createOrg     = i_User.getOrgName();
-        this.objectID      = i_ToRejectProcess.getOperateUserID();
-        this.objectName    = i_ToRejectProcess.getOperateUser();
-        this.objectType    = ParticipantTypeEnum.$User;
-        this.objectNo      = 0;
+        this.pwpID          = StringHelp.getUUID();
+        this.processID      = i_Process.getProcessID();
+        this.splitProcessID = i_Process.getSplitProcessID();
+        this.workID         = i_Process.getWorkID();
+        this.serviceDataID  = i_Process.getServiceDataID();
+        this.createTime     = i_Process.getCreateTime();
+        this.createrID      = i_User.getUserID();
+        this.creater        = i_User.getUserName();
+        this.createOrgID    = i_User.getOrgID();
+        this.createOrg      = i_User.getOrgName();
+        this.objectID       = i_ToRejectProcess.getOperateUserID();
+        this.objectName     = i_ToRejectProcess.getOperateUser();
+        this.objectType     = ParticipantTypeEnum.$User;
+        this.objectNo       = 0;
     }
     
 	
@@ -216,6 +221,26 @@ public class ProcessParticipant extends Participant
     public void setCreateOrg(String i_CreateOrg)
     {
         this.createOrg = i_CreateOrg;
+    }
+
+    
+    /**
+     * 获取：分单前的过程ID。合单前持续记录ID值
+     */
+    public String getSplitProcessID()
+    {
+        return splitProcessID;
+    }
+
+
+    /**
+     * 设置：分单前的过程ID。合单前持续记录ID值
+     * 
+     * @param splitProcessID 
+     */
+    public void setSplitProcessID(String splitProcessID)
+    {
+        this.splitProcessID = splitProcessID;
     }
 
 }
