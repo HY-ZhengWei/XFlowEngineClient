@@ -24,6 +24,7 @@ import org.hy.xflow.engine.enums.ActivityTypeEnum;
  * @createDate  2018-04-19
  * @version     v1.0
  *              v2.0  2018-09-05  添加：支持多个结束出口的工作流程
+ *              v3.0  2019-09-16  添加：allRoutesByNextACode属性，实现用当前活动、下一活动找路由信息。
  */
 public class ActivityRouteTree extends BaseModel
 {
@@ -34,6 +35,8 @@ public class ActivityRouteTree extends BaseModel
     /** 模板的所有活动。Map.key为活动Code */
     private Map<String ,ActivityInfo>                allActivitys;
     
+    
+    
     /** 模板的所有路由。Map.key为活动Code */
     private PartitionMap<String ,ActivityRoute>      allRoutes;
      
@@ -43,11 +46,18 @@ public class ActivityRouteTree extends BaseModel
     /** 模板的所有路由。Map.key分区为活动Code ,Map主键索引为路由Code */
     private TablePartitionRID<String ,ActivityRoute> allRoutesByARCode;
     
+    /** 模板的所有路由。Map.key分区为活动Code ,Map主键索引为下一个活动的Code */
+    private TablePartitionRID<String ,ActivityRoute> allRoutesByNextACode;
+    
+    
+    
     /** 模板的活动的所有参与人。Map.key为活动ID */
     private PartitionMap<String ,Participant>        allActivityPs;
     
     /** 模板的活动路由的所有参与人。Map.key为路由ID */
     private PartitionMap<String ,Participant>        allActivityRoutePs;
+    
+    
     
     /** 整个活动路由树的 "开始" 活动节点 */
     private ActivityInfo                             startActivity;
@@ -62,13 +72,14 @@ public class ActivityRouteTree extends BaseModel
                             ,PartitionMap<String ,Participant>   i_AllActivityPs
                             ,PartitionMap<String ,Participant>   i_AllActivityRoutePs)
     {
-        this.allActivitys       = i_AllActivitys;
-        this.allRoutes          = i_AllRoutes;
-        this.allRoutesByID      = new HashMap<String ,ActivityRoute>();
-        this.allRoutesByARCode  = new TablePartitionRID<String ,ActivityRoute>();
-        this.allActivityPs      = i_AllActivityPs;
-        this.allActivityRoutePs = i_AllActivityRoutePs;
-        this.endActivitys       = new HashMap<String ,ActivityInfo>();
+        this.allActivitys         = i_AllActivitys;
+        this.allRoutes            = i_AllRoutes;
+        this.allRoutesByID        = new HashMap<String ,ActivityRoute>();
+        this.allRoutesByARCode    = new TablePartitionRID<String ,ActivityRoute>();
+        this.allRoutesByNextACode = new TablePartitionRID<String ,ActivityRoute>();
+        this.allActivityPs        = i_AllActivityPs;
+        this.allActivityRoutePs   = i_AllActivityRoutePs;
+        this.endActivitys         = new HashMap<String ,ActivityInfo>();
         
         if ( this.allActivityRoutePs == null )
         {
@@ -192,6 +203,24 @@ public class ActivityRouteTree extends BaseModel
     
     
     /**
+     * 获取两活动间的具体的某一个路由信息
+     * 
+     * @author      ZhengWei(HY)
+     * @createDate  2019-09-16
+     * @version     v1.0
+     *
+     * @param i_ActivityCode       活动编码
+     * @param i_NextActivityCode   下一个活动的编码
+     * @return
+     */
+    public ActivityRoute getActivityRouteByNext(String i_ActivityCode ,String i_NextActivityCode)
+    {
+        return this.allRoutesByNextACode.get(i_ActivityCode).get(i_NextActivityCode);
+    }
+    
+    
+    
+    /**
      * 获取某一个路由信息
      * 
      * @author      ZhengWei(HY)
@@ -230,7 +259,8 @@ public class ActivityRouteTree extends BaseModel
         
         for (Map.Entry<String ,List<ActivityRoute>> v_Routes : this.allRoutes.entrySet())
         {
-            this.allRoutesByARCode.putRows(v_Routes.getKey() ,(Map<String ,ActivityRoute>)Help.toMap(v_Routes.getValue() ,"activityRouteCode"));
+            this.allRoutesByARCode   .putRows(v_Routes.getKey() ,(Map<String ,ActivityRoute>)Help.toMap(v_Routes.getValue() ,"activityRouteCode"));
+            this.allRoutesByNextACode.putRows(v_Routes.getKey() ,(Map<String ,ActivityRoute>)Help.toMap(v_Routes.getValue() ,"nextActivityCode"));
             
             for (ActivityRoute v_Route : v_Routes.getValue())
             {

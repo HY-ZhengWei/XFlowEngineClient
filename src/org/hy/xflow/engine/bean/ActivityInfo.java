@@ -94,6 +94,9 @@ public class ActivityInfo extends BaseModel
 	/** 备注说明 */
     private String infoComment;
     
+    /** 汇总通过值。当大于等于此值后，才能继续向下流转 */
+    private Double summaryPass;
+    
 	/** 创建人员ID */
     private String createrID;
     
@@ -755,6 +758,26 @@ public class ActivityInfo extends BaseModel
     public void setFontColor(String fontColor)
     {
         this.fontColor = fontColor;
+    }
+
+    
+    /**
+     * 获取：汇总通过值。当大于等于此值后，才能继续向下流转
+     */
+    public Double getSummaryPass()
+    {
+        return summaryPass;
+    }
+
+    
+    /**
+     * 设置：汇总通过值。当大于等于此值后，才能继续向下流转
+     * 
+     * @param summaryPass 
+     */
+    public void setSummaryPass(Double summaryPass)
+    {
+        this.summaryPass = summaryPass;
     }
 
 }

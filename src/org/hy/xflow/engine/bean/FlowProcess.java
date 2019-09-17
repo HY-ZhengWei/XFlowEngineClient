@@ -34,150 +34,166 @@ public class FlowProcess extends BaseModel
 	private List<ProcessParticipant> futureParticipants;
 	
 	/** 工作流的过程ID */
-    private String processID;
+    private String  processID;
     
 	/** 工作流实例ID */
-    private String workID;
+    private String  workID;
     
     /** 第三方使用系统的业务数据ID。即支持用第三方ID也能找到工作流信息 */
-    private String serviceDataID;
+    private String  serviceDataID;
     
 	/** 分单前的过程ID。合单前持续记录ID值。不一定与previousProcessID同值 */
-    private String splitProcessID;
+    private String  splitProcessID;
     
 	/** 工作流的过程编号。下标从1开始 */
     private Integer processNo;
     
 	/** 当前活动ID */
-    private String currentActivityID;
+    private String  currentActivityID;
     
     /** 当前活动编码 */
-    private String currentActivityCode;
+    private String  currentActivityCode;
     
 	/** 当前活动名称 */
-    private String currentActivityName;
+    private String  currentActivityName;
     
 	/** 上一过程ID */
-    private String previousProcessID;
+    private String  previousProcessID;
     
 	/** 上一活动ID */
-    private String previousActivityID;
+    private String  previousActivityID;
     
     /** 上一活动编码 */
-    private String previousActivityCode;
+    private String  previousActivityCode;
     
 	/** 上一活动名称 */
-    private String previousActivityName;
+    private String  previousActivityName;
+    
+    /** 上一活动的操作类型ID */
+    private String  previousOperateTypeID;
     
 	/** 下一过程ID */
-    private String nextProcessID;
+    private String  nextProcessID;
     
 	/** 下一活动ID */
-    private String nextActivityID;
+    private String  nextActivityID;
     
     /** 下一活动编码 */
-    private String nextActivityCode;
+    private String  nextActivityCode;
     
 	/** 下一活动名称 */
-    private String nextActivityName;
+    private String  nextActivityName;
     
 	/** 创建人员ID */
-    private String createrID;
+    private String  createrID;
     
 	/** 创建人员名称 */
-    private String creater;
+    private String  creater;
     
 	/** 创建部门ID */
-    private String createOrgID;
+    private String  createOrgID;
     
 	/** 创建部门名称 */
-    private String createOrg;
+    private String  createOrg;
     
 	/** 创建时间 */
-    private Date createTime;
+    private Date    createTime;
+    
+    /** 汇总值 */
+    private Double  summary;
+    
+    /** 汇总通过值。当大于等于此值后，才能继续向下流转 */
+    private Double  summaryPass;
+    
+    /** 汇总是否通过（0：未通过；1：通过） */
+    private Integer isPass;
     
 	/** 限制操作人员ID */
-    private String limitUserID;
+    private String  limitUserID;
     
 	/** 限制操作部门ID */
-    private String limitOrgID;
+    private String  limitOrgID;
     
 	/** 限制操作时间 */
-    private Date limitTime;
+    private Date    limitTime;
     
 	/** 操作时间 */
-    private Date operateTime;
+    private Date    operateTime;
     
 	/** 操作时长（单位：秒） */
     private Integer operateTimeLen;
     
 	/** 操作类型ID */
-    private String operateTypeID;
+    private String  operateTypeID;
     
 	/** 操作类型名称 */
-    private String operateType;
+    private String  operateType;
     
 	/** 操作人员ID */
-    private String operateUserID;
+    private String  operateUserID;
     
 	/** 操作人员名称 */
-    private String operateUser;
+    private String  operateUser;
     
 	/** 操作部门ID */
-    private String operateOrgID;
+    private String  operateOrgID;
     
 	/** 操作部门名称 */
-    private String operateOrg;
+    private String  operateOrg;
     
 	/** 操作文件信息，由第三方使用者定义其内容（拓展性数据） */
-    private String operateFiles;
+    private String  operateFiles;
     
 	/** 操作数据信息，由第三方使用者定义其内容（拓展性数据） */
-    private String operateDatas;
+    private String  operateDatas;
     
 	/** 备注说明 */
-    private String infoComment;
+    private String  infoComment;
     
 	
     
     public FlowProcess init_CreateFlow(User i_User ,FlowInfo i_Flow ,ActivityInfo i_Activity)
     {
-        this.templateID           = i_Flow.getFlowTemplateID();
-        this.processID            = i_Flow.getLastProcessID();
-        this.serviceDataID        = i_Flow.getServiceDataID();
-        this.workID               = i_Flow.getWorkID();
-        this.splitProcessID       = "";
-        this.currentActivityID    = i_Activity.getActivityID();
-        this.currentActivityCode  = i_Activity.getActivityCode();
-        this.currentActivityName  = i_Activity.getActivityName();
-        this.processNo            = 1;
-        this.previousProcessID    = "";
-        this.previousActivityID   = "";
-        this.previousActivityCode = "";
-        this.previousActivityName = "";
-        this.nextProcessID        = "";
-        this.nextActivityID       = "";
-        this.nextActivityCode     = "";
-        this.nextActivityName     = "";
-        this.createrID            = i_User.getUserID();
-        this.creater              = i_User.getUserName();
-        this.createOrgID          = i_User.getOrgID();
-        this.createOrg            = i_User.getOrgName();
-        this.createTime           = new Date();
-        this.limitUserID          = "";
-        this.limitOrgID           = "";
-        this.limitTime            = new Date("2000-01-01 00:00:00");
-        this.operateTime          = this.createTime;
-        this.operateTimeLen       = 0;
-        this.operateTypeID        = "";
-        this.operateType          = "";
-        this.operateUserID        = this.createrID;
-        this.operateUser          = this.creater;
-        this.operateOrgID         = this.createOrgID;
-        this.operateOrg           = this.createOrg;
-        this.operateFiles         = "";
-        this.operateDatas         = "";
-        this.infoComment          = "";
+        this.templateID            = i_Flow.getFlowTemplateID();
+        this.processID             = i_Flow.getLastProcessID();
+        this.serviceDataID         = i_Flow.getServiceDataID();
+        this.workID                = i_Flow.getWorkID();
+        this.splitProcessID        = "";
+        this.currentActivityID     = i_Activity.getActivityID();
+        this.currentActivityCode   = i_Activity.getActivityCode();
+        this.currentActivityName   = i_Activity.getActivityName();
+        this.processNo             = 1;
+        this.previousProcessID     = "";
+        this.previousActivityID    = "";
+        this.previousActivityCode  = "";
+        this.previousActivityName  = "";
+        this.previousOperateTypeID = "";
+        this.nextProcessID         = "";
+        this.nextActivityID        = "";
+        this.nextActivityCode      = "";
+        this.nextActivityName      = "";
+        this.createrID             = i_User.getUserID();
+        this.creater               = i_User.getUserName();
+        this.createOrgID           = i_User.getOrgID();
+        this.createOrg             = i_User.getOrgName();
+        this.createTime            = new Date();
+        this.limitUserID           = "";
+        this.limitOrgID            = "";
+        this.limitTime             = new Date("2000-01-01 00:00:00");
+        this.operateTime           = this.createTime;
+        this.operateTimeLen        = 0;
+        this.operateTypeID         = "";
+        this.operateType           = "";
+        this.operateUserID         = this.createrID;
+        this.operateUser           = this.creater;
+        this.operateOrgID          = this.createOrgID;
+        this.operateOrg            = this.createOrg;
+        this.operateFiles          = "";
+        this.operateDatas          = "";
+        this.infoComment           = "";
+        this.summary               = 0D;
+        this.summaryPass           = 0D;
+        this.isPass                = 0;
         
         return this;
     }
@@ -200,6 +216,7 @@ public class FlowProcess extends BaseModel
         this.previousActivityID      = io_Previous.getCurrentActivityID();
         this.previousActivityCode    = io_Previous.getCurrentActivityCode();
         this.previousActivityName    = io_Previous.getCurrentActivityName();
+        this.previousOperateTypeID   = i_Route.getRouteType().getRouteTypeID().getValue();
         
         io_Previous.nextProcessID    = this.processID;
         io_Previous.nextActivityID   = this.currentActivityID;
@@ -238,6 +255,9 @@ public class FlowProcess extends BaseModel
         this.operateFiles            = "";
         this.operateDatas            = "";
         this.infoComment             = "";
+        this.summary                 = 0D;
+        this.summaryPass             = 0D;
+        this.isPass                  = 0;
         
         return this;
     }
@@ -1063,6 +1083,86 @@ public class FlowProcess extends BaseModel
     public void setTemplateID(String templateID)
     {
         this.templateID = templateID;
+    }
+
+    
+    /**
+     * 获取：汇总值
+     */
+    public Double getSummary()
+    {
+        return summary;
+    }
+
+
+    /**
+     * 获取：汇总通过值。当大于等于此值后，才能继续向下流转
+     */
+    public Double getSummaryPass()
+    {
+        return summaryPass;
+    }
+
+    
+    /**
+     * 设置：汇总值
+     * 
+     * @param summary 
+     */
+    public void setSummary(Double summary)
+    {
+        this.summary = summary;
+    }
+
+    
+    /**
+     * 设置：汇总通过值。当大于等于此值后，才能继续向下流转
+     * 
+     * @param summaryPass 
+     */
+    public void setSummaryPass(Double summaryPass)
+    {
+        this.summaryPass = summaryPass;
+    }
+
+
+    /**
+     * 获取：汇总是否通过（0：未通过；1：通过）
+     */
+    public Integer getIsPass()
+    {
+        return isPass;
+    }
+
+    
+    /**
+     * 设置：汇总是否通过（0：未通过；1：通过）
+     * 
+     * @param isPass 
+     */
+    public void setIsPass(Integer isPass)
+    {
+        this.isPass = isPass;
+    }
+
+    
+    /**
+     * 获取：上一活动的操作类型ID
+     */
+    public String getPreviousOperateTypeID()
+    {
+        return previousOperateTypeID;
+    }
+
+
+    /**
+     * 设置：上一活动的操作类型ID
+     * 
+     * @param previousOperateTypeID 
+     */
+    public void setPreviousOperateTypeID(String previousOperateTypeID)
+    {
+        this.previousOperateTypeID = previousOperateTypeID;
     }
 
 }
