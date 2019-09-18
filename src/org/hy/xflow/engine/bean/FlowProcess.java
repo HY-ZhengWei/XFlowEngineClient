@@ -105,6 +105,15 @@ public class FlowProcess extends BaseModel
     /** 汇总通过值。当大于等于此值后，才能继续向下流转 */
     private Double  summaryPass;
     
+    /** 提交汇总的总人数 */
+    private Integer counter;
+    
+    /** 汇总人数的限制。当大于等于此值后，才能继续向下流转 */
+    private Integer counterPass;
+    
+    /** 汇总类型。指summaryPass和counterPass的关系是与，还是或 */
+    private String  passType;
+    
     /** 汇总是否通过（0：未通过；1：通过） */
     private Integer isPass;
     
@@ -193,6 +202,9 @@ public class FlowProcess extends BaseModel
         this.infoComment           = "";
         this.summary               = 0D;
         this.summaryPass           = 0D;
+        this.counter               = 0;
+        this.counterPass           = 0;
+        this.passType              = "";
         this.isPass                = 0;
         
         return this;
@@ -257,6 +269,9 @@ public class FlowProcess extends BaseModel
         this.infoComment             = "";
         this.summary                 = 0D;
         this.summaryPass             = 0D;
+        this.counter                 = 0;
+        this.counterPass             = 0;
+        this.passType                = "";
         this.isPass                  = 0;
         
         return this;
@@ -1091,7 +1106,7 @@ public class FlowProcess extends BaseModel
      */
     public Double getSummary()
     {
-        return summary;
+        return Help.NVL(summary);
     }
 
 
@@ -1163,6 +1178,66 @@ public class FlowProcess extends BaseModel
     public void setPreviousOperateTypeID(String previousOperateTypeID)
     {
         this.previousOperateTypeID = previousOperateTypeID;
+    }
+
+
+    /**
+     * 获取：提交汇总的总人数
+     */
+    public Integer getCounter()
+    {
+        return Help.NVL(counter);
+    }
+
+    
+    /**
+     * 获取：汇总人数的限制。当大于等于此值后，才能继续向下流转
+     */
+    public Integer getCounterPass()
+    {
+        return counterPass;
+    }
+
+    
+    /**
+     * 获取：汇总类型。指summaryPass和counterPass的关系是与，还是或
+     */
+    public String getPassType()
+    {
+        return passType;
+    }
+
+
+    /**
+     * 设置：提交汇总的总人数
+     * 
+     * @param counter 
+     */
+    public void setCounter(Integer counter)
+    {
+        this.counter = counter;
+    }
+
+
+    /**
+     * 设置：汇总人数的限制。当大于等于此值后，才能继续向下流转
+     * 
+     * @param counterPass 
+     */
+    public void setCounterPass(Integer counterPass)
+    {
+        this.counterPass = counterPass;
+    }
+
+    
+    /**
+     * 设置：汇总类型。指summaryPass和counterPass的关系是与，还是或
+     * 
+     * @param passType 
+     */
+    public void setPassType(String passType)
+    {
+        this.passType = passType;
     }
 
 }

@@ -62,58 +62,64 @@ public class ActivityInfo extends BaseModel
     private ActivityType activityType;
     
 	/** 位置x坐标值 */
-    private Double x;
+    private Double  x;
     
 	/** 位置y坐标值 */
-    private Double y;
+    private Double  y;
     
 	/** 位置z坐标值 */
-    private Double z;
+    private Double  z;
     
 	/** 图标高度 */
-    private Double height;
+    private Double  height;
     
 	/** 图标宽度 */
-    private Double width;
+    private Double  width;
     
 	/** 图标路径 */
-    private String iconURL;
+    private String  iconURL;
     
     /** 活动节点的背景色 */
-    private String backgroudColor;
+    private String  backgroudColor;
     
     /** 活动节点的边框线颜色 */
-    private String lineColor;
+    private String  lineColor;
     
     /** 活动节点的标记块颜色 */
-    private String flagColor;
+    private String  flagColor;
     
     /** 活动节点的文字颜色 */
-    private String fontColor;
+    private String  fontColor;
     
 	/** 备注说明 */
-    private String infoComment;
+    private String  infoComment;
     
     /** 汇总通过值。当大于等于此值后，才能继续向下流转 */
-    private Double summaryPass;
+    private Double  summaryPass;
+    
+    /** 汇总人数的限制。当大于等于此值后，才能继续向下流转 */
+    private Integer counterPass;
+    
+    /** 汇总类型。指summaryPass和counterPass的关系是与，还是或 */
+    private String  passType;
     
 	/** 创建人员ID */
-    private String createrID;
+    private String  createrID;
     
 	/** 创建人员名称 */
-    private String creater;
+    private String  creater;
     
 	/** 创建时间 */
-    private Date createTime;
+    private Date    createTime;
     
 	/** 最后修改人员ID */
-    private String lastUserID;
+    private String  lastUserID;
     
 	/** 最后修改人员名称 */
-    private String lastUser;
+    private String  lastUser;
     
 	/** 最后修改时间 */
-    private Date lastTime;
+    private Date    lastTime;
     
     
     
@@ -766,7 +772,7 @@ public class ActivityInfo extends BaseModel
      */
     public Double getSummaryPass()
     {
-        return summaryPass;
+        return Help.NVL(summaryPass);
     }
 
     
@@ -778,6 +784,46 @@ public class ActivityInfo extends BaseModel
     public void setSummaryPass(Double summaryPass)
     {
         this.summaryPass = summaryPass;
+    }
+
+    
+    /**
+     * 获取：汇总人数的限制。当大于等于此值后，才能继续向下流转
+     */
+    public Integer getCounterPass()
+    {
+        return Help.NVL(counterPass);
+    }
+
+
+    /**
+     * 获取：汇总类型。指summaryPass和counterPass的关系是与，还是或
+     */
+    public String getPassType()
+    {
+        return passType;
+    }
+
+    
+    /**
+     * 设置：汇总人数的限制。当大于等于此值后，才能继续向下流转
+     * 
+     * @param counterPass 
+     */
+    public void setCounterPass(Integer counterPass)
+    {
+        this.counterPass = counterPass;
+    }
+
+    
+    /**
+     * 设置：汇总类型。指summaryPass和counterPass的关系是与，还是或
+     * 
+     * @param passType 
+     */
+    public void setPassType(String passType)
+    {
+        this.passType = passType;
     }
 
 }
