@@ -40,6 +40,9 @@ public class NextRoutes extends BaseModel
     /** 查询用户可以走的路由 */
     private List<ActivityRoute>                      routes;
     
+    /** 历次的汇总信息（按时间倒序排列） */
+    private List<FlowProcess>                        summarys;
+    
     
     
     public NextRoutes()
@@ -172,6 +175,28 @@ public class NextRoutes extends BaseModel
     public void setFlowParticipants(PartitionMap<String ,ProcessParticipant> flowParticipants)
     {
         this.flowParticipants = flowParticipants;
+    }
+
+    
+    
+    /**
+     * 获取：历次的汇总信息（按时间倒序排列）
+     */
+    public List<FlowProcess> getSummarys()
+    {
+        return summarys;
+    }
+
+    
+
+    /**
+     * 设置：历次的汇总信息（按时间倒序排列）
+     * 
+     * @param summarys 
+     */
+    public void setSummarys(List<FlowProcess> summarys)
+    {
+        this.summarys = summarys;
     }
     
 }

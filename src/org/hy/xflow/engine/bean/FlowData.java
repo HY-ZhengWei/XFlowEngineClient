@@ -44,7 +44,7 @@ public class FlowData extends BaseModel
     
     /** 指定下一活动的动态参与人 */
     private List<UserParticipant> participants;
-
+    
     
     
     /**

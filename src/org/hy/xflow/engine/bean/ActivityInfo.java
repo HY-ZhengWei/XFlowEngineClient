@@ -124,6 +124,33 @@ public class ActivityInfo extends BaseModel
     
     
     /**
+     * 创建一个简单的活动实例。主要是：防止递归引用，对外界传递数据使用。
+     * 
+     * @author      ZhengWei(HY)
+     * @createDate  2019-09-19
+     * @version     v1.0
+     *
+     * @return
+     */
+    public ActivityInfo toSimple()
+    {
+        ActivityInfo v_Activity = new ActivityInfo();
+        
+        v_Activity.setTemplateID(  this.getTemplateID());
+        v_Activity.setActivityID(  this.getActivityID());
+        v_Activity.setActivityCode(this.getActivityCode());
+        v_Activity.setActivityName(this.getActivityName());
+        v_Activity.setActivityType(this.getActivityType());
+        v_Activity.setInfoComment( this.getInfoComment());
+        v_Activity.setSummaryPass( this.getSummaryPass());
+        v_Activity.setCounterPass( this.getCounterPass());
+        v_Activity.setPassType(    this.getPassType());
+        
+        return v_Activity;
+    }
+    
+    
+    /**
      * 判定用户信息是否当前活动的参与人之一
      * 
      * @author      ZhengWei(HY)
