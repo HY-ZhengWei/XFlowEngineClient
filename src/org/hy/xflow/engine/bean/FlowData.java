@@ -16,6 +16,7 @@ import org.hy.xflow.engine.common.BaseModel;
  * @author      ZhengWei(HY)
  * @createDate  2018-05-17
  * @version     v1.0
+ *              v2.0  2019-09-19  添加：汇总值、汇总人数、操作文件、操作数据、备注说明
  */
 public class FlowData extends BaseModel
 {
@@ -44,6 +45,21 @@ public class FlowData extends BaseModel
     
     /** 指定下一活动的动态参与人 */
     private List<UserParticipant> participants;
+    
+    /** 汇总值 */
+    private Double                summary;
+    
+    /** 提交汇总的总人数 */
+    private Integer               counter;
+    
+    /** 操作文件信息，由第三方使用者定义其内容（拓展性数据） */
+    private String                operateFiles;
+    
+    /** 操作数据信息，由第三方使用者定义其内容（拓展性数据） */
+    private String                operateDatas;
+    
+    /** 备注说明 */
+    private String                infoComment;
     
     
     
@@ -197,6 +213,116 @@ public class FlowData extends BaseModel
     public void setVersionNo(Integer versionNo)
     {
         this.versionNo = versionNo;
+    }
+
+
+    
+    /**
+     * 获取：汇总值
+     */
+    public Double getSummary()
+    {
+        return summary;
+    }
+
+
+    
+    /**
+     * 获取：提交汇总的总人数
+     */
+    public Integer getCounter()
+    {
+        return counter;
+    }
+
+
+    
+    /**
+     * 获取：操作文件信息，由第三方使用者定义其内容（拓展性数据）
+     */
+    public String getOperateFiles()
+    {
+        return operateFiles;
+    }
+
+
+    
+    /**
+     * 获取：操作数据信息，由第三方使用者定义其内容（拓展性数据）
+     */
+    public String getOperateDatas()
+    {
+        return operateDatas;
+    }
+
+
+    
+    /**
+     * 获取：备注说明
+     */
+    public String getInfoComment()
+    {
+        return infoComment;
+    }
+
+
+    
+    /**
+     * 设置：汇总值
+     * 
+     * @param summary 
+     */
+    public void setSummary(Double summary)
+    {
+        this.summary = summary;
+    }
+
+
+    
+    /**
+     * 设置：提交汇总的总人数
+     * 
+     * @param counter 
+     */
+    public void setCounter(Integer counter)
+    {
+        this.counter = counter;
+    }
+
+
+
+    /**
+     * 设置：操作文件信息，由第三方使用者定义其内容（拓展性数据）
+     * 
+     * @param operateFiles 
+     */
+    public void setOperateFiles(String operateFiles)
+    {
+        this.operateFiles = operateFiles;
+    }
+
+
+    
+    /**
+     * 设置：操作数据信息，由第三方使用者定义其内容（拓展性数据）
+     * 
+     * @param operateDatas 
+     */
+    public void setOperateDatas(String operateDatas)
+    {
+        this.operateDatas = operateDatas;
+    }
+
+
+    
+    /**
+     * 设置：备注说明
+     * 
+     * @param infoComment 
+     */
+    public void setInfoComment(String infoComment)
+    {
+        this.infoComment = infoComment;
     }
     
 }
