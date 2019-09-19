@@ -46,6 +46,9 @@ public class FlowData extends BaseModel
     /** 指定下一活动的动态参与人 */
     private List<UserParticipant> participants;
     
+    /** 多路并发的流转信息 */
+    List<FlowDataRoute>           routes;
+    
     /** 汇总值 */
     private Double                summary;
     
@@ -323,6 +326,28 @@ public class FlowData extends BaseModel
     public void setInfoComment(String infoComment)
     {
         this.infoComment = infoComment;
+    }
+
+    
+    
+    /**
+     * 获取：多路并发的流转信息
+     */
+    public List<FlowDataRoute> getRoutes()
+    {
+        return routes;
+    }
+
+    
+    
+    /**
+     * 设置：多路并发的流转信息
+     * 
+     * @param routes 
+     */
+    public void setRoutes(List<FlowDataRoute> routes)
+    {
+        this.routes = routes;
     }
     
 }
