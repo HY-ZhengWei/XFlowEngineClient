@@ -25,7 +25,7 @@ import org.hy.xflow.engine.enums.ParticipantTypeEnum;
 public class ActivityInfo extends BaseModel
 {
     private static final long serialVersionUID = -4724247321457107633L;
-	
+    
     
     /** 本活动组件（节点）的参与人。谁从此路过。（内存合成） */
     private List<Participant> participants;
@@ -43,40 +43,40 @@ public class ActivityInfo extends BaseModel
     /** 本活动组件（节点）的所有通过路由信息（内存合成） */
     private List<ActivityRoute> routes;
     
-	/** 工作流活动ID */
+    /** 工作流活动ID */
     private String activityID;
     
     /** 工作流活动Code。作为与外界交互的编码。同一版本的工作流下是惟一的，不同版本的同类工作流可以相同。 */
     private String activityCode;
     
-	/** 工作流的模板ID */
+    /** 工作流的模板ID */
     private String templateID;
     
-	/** 活动名称 */
+    /** 活动名称 */
     private String activityName;
     
-	/** 活动类型ID */
+    /** 活动类型ID */
     private ActivityTypeEnum activityTypeID;
     
     /** 活动类型（内存合成） */
     private ActivityType activityType;
     
-	/** 位置x坐标值 */
+    /** 位置x坐标值 */
     private Double  x;
     
-	/** 位置y坐标值 */
+    /** 位置y坐标值 */
     private Double  y;
     
-	/** 位置z坐标值 */
+    /** 位置z坐标值 */
     private Double  z;
     
-	/** 图标高度 */
+    /** 图标高度 */
     private Double  height;
     
-	/** 图标宽度 */
+    /** 图标宽度 */
     private Double  width;
     
-	/** 图标路径 */
+    /** 图标路径 */
     private String  iconURL;
     
     /** 活动节点的背景色 */
@@ -91,7 +91,7 @@ public class ActivityInfo extends BaseModel
     /** 活动节点的文字颜色 */
     private String  fontColor;
     
-	/** 备注说明 */
+    /** 备注说明 */
     private String  infoComment;
     
     /** 汇总通过值。当大于等于此值后，才能继续向下流转 */
@@ -103,22 +103,31 @@ public class ActivityInfo extends BaseModel
     /** 汇总类型。指summaryPass和counterPass的关系是与，还是或 */
     private String  passType;
     
-	/** 创建人员ID */
+    /** 配置页面的路径，可由终端用户决定配置页面的展示样子。用于配置阶段，并非实例流转。 */
+    private String  configPageURL;
+    
+    /** 配置页面的数据。将保存配置页面中的数据到工作流系统中，当再次打开配置时，通过POST请求传递参数的方式给配置页面。 */
+    private String  configPageDatas;
+    
+    /** 规则引擎的配置代码 */
+    private String  xrouteConfig;
+    
+    /** 创建人员ID */
     private String  createrID;
     
-	/** 创建人员名称 */
+    /** 创建人员名称 */
     private String  creater;
     
-	/** 创建时间 */
+    /** 创建时间 */
     private Date    createTime;
     
-	/** 最后修改人员ID */
+    /** 最后修改人员ID */
     private String  lastUserID;
     
-	/** 最后修改人员名称 */
+    /** 最后修改人员名称 */
     private String  lastUser;
     
-	/** 最后修改时间 */
+    /** 最后修改时间 */
     private Date    lastTime;
     
     
@@ -136,15 +145,18 @@ public class ActivityInfo extends BaseModel
     {
         ActivityInfo v_Activity = new ActivityInfo();
         
-        v_Activity.setTemplateID(  this.getTemplateID());
-        v_Activity.setActivityID(  this.getActivityID());
-        v_Activity.setActivityCode(this.getActivityCode());
-        v_Activity.setActivityName(this.getActivityName());
-        v_Activity.setActivityType(this.getActivityType());
-        v_Activity.setInfoComment( this.getInfoComment());
-        v_Activity.setSummaryPass( this.getSummaryPass());
-        v_Activity.setCounterPass( this.getCounterPass());
-        v_Activity.setPassType(    this.getPassType());
+        v_Activity.setTemplateID(     this.getTemplateID());
+        v_Activity.setActivityID(     this.getActivityID());
+        v_Activity.setActivityCode(   this.getActivityCode());
+        v_Activity.setActivityName(   this.getActivityName());
+        v_Activity.setActivityType(   this.getActivityType());
+        v_Activity.setInfoComment(    this.getInfoComment());
+        v_Activity.setSummaryPass(    this.getSummaryPass());
+        v_Activity.setCounterPass(    this.getCounterPass());
+        v_Activity.setPassType(       this.getPassType());
+        v_Activity.setConfigPageURL(  this.getConfigPageURL());
+        v_Activity.setConfigPageDatas(this.getConfigPageDatas());
+        v_Activity.setXrouteConfig(   this.getXrouteConfig());
         
         return v_Activity;
     }
@@ -352,8 +364,8 @@ public class ActivityInfo extends BaseModel
     {
         this.activityID = i_ActivityID;
     }
-	
-	
+    
+    
     /**
      * 获取：工作流活动Code。作为与外界交互的编码。同一版本的工作流下是惟一的，不同版本的同类工作流可以相同。
      */
@@ -392,9 +404,9 @@ public class ActivityInfo extends BaseModel
     {
         this.templateID = i_TemplateID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：活动名称
      */
     public String getActivityName()
@@ -412,9 +424,9 @@ public class ActivityInfo extends BaseModel
     {
         this.activityName = i_ActivityName;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：活动类型ID
      */
     public ActivityTypeEnum getActivityTypeID()
@@ -432,8 +444,8 @@ public class ActivityInfo extends BaseModel
     {
         this.activityTypeID = i_ActivityTypeID;
     }
-	
-	
+    
+    
     /**
      * 获取：活动类型（内存合成）
      */
@@ -472,9 +484,9 @@ public class ActivityInfo extends BaseModel
     {
         this.x = i_X;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：位置y坐标值
      */
     public Double getY()
@@ -492,9 +504,9 @@ public class ActivityInfo extends BaseModel
     {
         this.y = i_Y;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：位置z坐标值
      */
     public Double getZ()
@@ -512,9 +524,9 @@ public class ActivityInfo extends BaseModel
     {
         this.z = i_Z;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：图标高度
      */
     public Double getHeight()
@@ -532,9 +544,9 @@ public class ActivityInfo extends BaseModel
     {
         this.height = i_Height;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：图标宽度
      */
     public Double getWidth()
@@ -552,9 +564,9 @@ public class ActivityInfo extends BaseModel
     {
         this.width = i_Width;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：图标路径
      */
     public String getIconURL()
@@ -572,9 +584,9 @@ public class ActivityInfo extends BaseModel
     {
         this.iconURL = i_IconURL;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：备注说明
      */
     public String getInfoComment()
@@ -592,9 +604,9 @@ public class ActivityInfo extends BaseModel
     {
         this.infoComment = i_InfoComment;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：创建人员ID
      */
     public String getCreaterID()
@@ -612,9 +624,9 @@ public class ActivityInfo extends BaseModel
     {
         this.createrID = i_CreaterID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：创建人员名称
      */
     public String getCreater()
@@ -632,9 +644,9 @@ public class ActivityInfo extends BaseModel
     {
         this.creater = i_Creater;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：创建时间
      */
     public Date getCreateTime()
@@ -652,9 +664,9 @@ public class ActivityInfo extends BaseModel
     {
         this.createTime = i_CreateTime;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：最后修改人员ID
      */
     public String getLastUserID()
@@ -672,9 +684,9 @@ public class ActivityInfo extends BaseModel
     {
         this.lastUserID = i_LastUserID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：最后修改人员名称
      */
     public String getLastUser()
@@ -692,9 +704,9 @@ public class ActivityInfo extends BaseModel
     {
         this.lastUser = i_LastUser;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：最后修改时间
      */
     public Date getLastTime()
@@ -851,6 +863,66 @@ public class ActivityInfo extends BaseModel
     public void setPassType(String passType)
     {
         this.passType = passType;
+    }
+
+    
+    /**
+     * 获取：配置页面的路径，可由终端用户决定配置页面的展示样子。用于配置阶段，并非实例流转。
+     */
+    public String getConfigPageURL()
+    {
+        return configPageURL;
+    }
+
+    
+    /**
+     * 获取：配置页面的数据。将保存配置页面中的数据到工作流系统中，当再次打开配置时，通过POST请求传递参数的方式给配置页面。
+     */
+    public String getConfigPageDatas()
+    {
+        return configPageDatas;
+    }
+
+    
+    /**
+     * 获取：规则引擎的配置代码
+     */
+    public String getXrouteConfig()
+    {
+        return xrouteConfig;
+    }
+
+    
+    /**
+     * 设置：配置页面的路径，可由终端用户决定配置页面的展示样子。用于配置阶段，并非实例流转。
+     * 
+     * @param configPageURL 
+     */
+    public void setConfigPageURL(String configPageURL)
+    {
+        this.configPageURL = configPageURL;
+    }
+
+    
+    /**
+     * 设置：配置页面的数据。将保存配置页面中的数据到工作流系统中，当再次打开配置时，通过POST请求传递参数的方式给配置页面。
+     * 
+     * @param configPageDatas 
+     */
+    public void setConfigPageDatas(String configPageDatas)
+    {
+        this.configPageDatas = configPageDatas;
+    }
+
+    
+    /**
+     * 设置：规则引擎的配置代码
+     * 
+     * @param xrouteConfig 
+     */
+    public void setXrouteConfig(String xrouteConfig)
+    {
+        this.xrouteConfig = xrouteConfig;
     }
 
 }
