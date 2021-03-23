@@ -39,7 +39,7 @@ public class BaseService extends Base
     {
         List<ClientSocket> v_Servers = this.getFlowClusterServers();
         
-        if ( !Help.isNull(v_Servers) )
+        if ( Help.isNull(v_Servers) )
         {
             return;
         }
