@@ -8,6 +8,7 @@ import org.hy.common.StringHelp;
 import org.hy.common.app.Param;
 import org.hy.common.net.ClientSocket;
 import org.hy.common.net.ClientSocketCluster;
+import org.hy.common.net.common.ClientCluster;
 import org.hy.common.net.data.CommunicationRequest;
 import org.hy.common.xml.XJava;
 
@@ -20,7 +21,7 @@ import org.hy.common.xml.XJava;
  * 
  * @author      ZhengWei(HY)
  * @createDate  2014-10-22
- * @version     v1.0  
+ * @version     v1.0
  *              v2.0  2020-01-02  1. 添加：工作流引擎集群
  */
 public class BaseService extends Base
@@ -37,14 +38,14 @@ public class BaseService extends Base
      */
     public void clusterSyncFlowCache(CommunicationRequest i_RequestData)
     {
-        List<ClientSocket> v_Servers = this.getFlowClusterServers();
+        List<ClientCluster> v_Servers = this.getFlowClusterServers();
         
         if ( Help.isNull(v_Servers) )
         {
             return;
         }
         
-        ClientSocketCluster.sends(v_Servers ,this.getClusterTimeout() ,i_RequestData ,false);
+        ClientSocketCluster.sends(v_Servers ,false ,this.getClusterTimeout() ,i_RequestData);
     }
     
     
@@ -61,7 +62,7 @@ public class BaseService extends Base
      *
      * @return
      */
-    public List<ClientSocket> getFlowClusterServers()
+    public List<ClientCluster> getFlowClusterServers()
     {
         Param v_Param = XJava.getParam("FlowClusterServers");
         if ( v_Param == null || Help.isNull(v_Param.getValue()) )
@@ -69,8 +70,8 @@ public class BaseService extends Base
             return null;
         }
         
-        String []          v_ClusterServers = StringHelp.replaceAll(XJava.getParam("FlowClusterServers").getValue() ,new String[]{" " ,"\t" ,"\r" ,"\n"} ,new String[]{""}).split(",");
-        List<ClientSocket> v_Clusters       = new ArrayList<ClientSocket>();
+        String []           v_ClusterServers = StringHelp.replaceAll(XJava.getParam("FlowClusterServers").getValue() ,new String[]{" " ,"\t" ,"\r" ,"\n"} ,new String[]{""}).split(",");
+        List<ClientCluster> v_Clusters       = new ArrayList<ClientCluster>();
         
         for (String v_Server : v_ClusterServers)
         {
