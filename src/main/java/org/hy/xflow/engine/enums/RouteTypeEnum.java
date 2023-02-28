@@ -16,15 +16,19 @@ import org.hy.xflow.engine.common.BaseEnum;
 public enum RouteTypeEnum implements BaseEnum<String>
 {
     
-    $Normal("RT001" ,"转派"),
+    $Normal     ("RT001"     ,"转派"),
+                             
+    $ToMany     ("RT002"     ,"分派"),
+                             
+    $ToSum(     "RT003"      ,"汇签"),
+                             
+    $Reject     ("RT020"     ,"驳回"),
     
-    $ToMany("RT002" ,"分派"),
+    $Reject_Auto("RT020AUTO" ,"自由驳回_自动模式"),
     
-    $ToSum("RT003"  ,"汇签"),
+    $Reject_Team("RT020TEAM" ,"自由驳回_协同模式"),
     
-    $Reject("RT020" ,"驳回"),
-    
-    $Finish("RT999" ,"结束");
+    $Finish     ("RT999"     ,"结束");
     
     
     
@@ -57,9 +61,9 @@ public enum RouteTypeEnum implements BaseEnum<String>
             return null;
         }
         
-        for (RouteTypeEnum v_Enum : RouteTypeEnum.values()) 
+        for (RouteTypeEnum v_Enum : RouteTypeEnum.values())
         {
-            if ( v_Enum.value.equals(i_Value.trim()) ) 
+            if ( v_Enum.value.equalsIgnoreCase(i_Value.trim()) )
             {
                 return v_Enum;
             }

@@ -7,7 +7,7 @@ import org.hy.xflow.engine.common.BaseEnum;
 
 
 /**
- * 参与人类型 
+ * 参与人类型
  *
  * @author      ZhengWei(HY)
  * @createDate  2018-05-08
@@ -28,8 +28,8 @@ public enum ParticipantTypeEnum implements BaseEnum<Integer>
     
     $RoleSend(    13 ,"抄送角色"),
     
-    /** 
-     * 只用于模板定义阶段。工作流实例不能动态指定此类型的。 
+    /**
+     * 只用于模板定义阶段。工作流实例不能动态指定此类型的。
      * 
      * 此类型的参与人.objectID为空。
      * 
@@ -37,14 +37,14 @@ public enum ParticipantTypeEnum implements BaseEnum<Integer>
      */
     $CreateUser(  21 ,"发起人"),
     
-    /** 
+    /**
      * 只用于模板定义阶段。工作流实例不能动态指定此类型的。
      * 
      * 此类型的参与人.objecttID为活动节点编码。
      * 
      * 可用于活动、路由的定义中。
      */
-    $ActivityUser(22 ,"活动实际操作人"); 
+    $ActivityUser(22 ,"活动实际操作人");
     
     
     
@@ -77,9 +77,9 @@ public enum ParticipantTypeEnum implements BaseEnum<Integer>
             return null;
         }
         
-        for (ParticipantTypeEnum v_Enum : ParticipantTypeEnum.values()) 
+        for (ParticipantTypeEnum v_Enum : ParticipantTypeEnum.values())
         {
-            if ( v_Enum.value.intValue() == i_Value.intValue() ) 
+            if ( v_Enum.value.intValue() == i_Value.intValue() )
             {
                 return v_Enum;
             }

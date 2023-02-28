@@ -53,9 +53,9 @@ public enum ActivityTypeEnum implements BaseEnum<String>
             return null;
         }
         
-        for (ActivityTypeEnum v_Enum : ActivityTypeEnum.values()) 
+        for (ActivityTypeEnum v_Enum : ActivityTypeEnum.values())
         {
-            if ( v_Enum.value.equals(i_Value.trim()) ) 
+            if ( v_Enum.value.equalsIgnoreCase(i_Value.trim()) )
             {
                 return v_Enum;
             }

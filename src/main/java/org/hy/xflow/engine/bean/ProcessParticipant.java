@@ -17,28 +17,51 @@ import org.hy.xflow.engine.enums.ParticipantTypeEnum;
 public class ProcessParticipant extends Participant
 {
     private static final long serialVersionUID = -4724247321457107633L;
-	
     
-	/** 主键ID */
+    
+    /** 主键ID */
     private String pwpID;
     
-	/** 工作流的过程ID */
+    /** 工作流的过程ID */
     private String processID;
     
     /** 分单前的过程ID。合单前持续记录ID值 */
     private String splitProcessID;
     
-	/** 工作流实例ID */
+    /** 工作流实例ID */
     private String workID;
     
     /** 第三方使用系统的业务数据ID。即支持用第三方ID也能找到工作流信息 */
     private String serviceDataID;
     
-	/** 创建部门ID */
+    /** 创建部门ID */
     private String createOrgID;
     
-	/** 创建部门名称 */
+    /** 创建部门名称 */
     private String createOrg;
+    
+    
+    
+    /**
+     * 初始化本类。用于父类转子类时
+     * 
+     * @author      ZhengWei(HY)
+     * @createDate  2018-05-08
+     * @version     v1.0
+     *
+     * @param i_User
+     * @param i_Process
+     * @param i_UserPart
+     */
+    public ProcessParticipant init(UserParticipant i_UserPart)
+    {
+        this.objectID       = i_UserPart.getObjectID();
+        this.objectName     = i_UserPart.getObjectName();
+        this.objectType     = i_UserPart.getObjectType();
+        this.objectNo       = i_UserPart.getObjectNo();
+        
+        return this;
+    }
     
     
     
@@ -53,7 +76,7 @@ public class ProcessParticipant extends Participant
      * @param i_Process
      * @param i_UserPart
      */
-    public void init(User i_User ,FlowProcess i_Process ,UserParticipant i_UserPart)
+    public ProcessParticipant init(User i_User ,FlowProcess i_Process ,UserParticipant i_UserPart)
     {
         this.pwpID          = StringHelp.getUUID();
         this.processID      = i_Process.getProcessID();
@@ -69,6 +92,8 @@ public class ProcessParticipant extends Participant
         this.objectName     = i_UserPart.getObjectName();
         this.objectType     = i_UserPart.getObjectType();
         this.objectNo       = i_UserPart.getObjectNo();
+        
+        return this;
     }
     
     
@@ -84,7 +109,7 @@ public class ProcessParticipant extends Participant
      * @param i_Process
      * @param i_ToRejectProcess
      */
-    public void init_ToReject(User i_User ,FlowProcess i_Process ,FlowProcess i_ToRejectProcess)
+    public ProcessParticipant init_ToReject(User i_User ,FlowProcess i_Process ,FlowProcess i_ToRejectProcess)
     {
         this.pwpID          = StringHelp.getUUID();
         this.processID      = i_Process.getProcessID();
@@ -100,11 +125,13 @@ public class ProcessParticipant extends Participant
         this.objectName     = i_ToRejectProcess.getOperateUser();
         this.objectType     = ParticipantTypeEnum.$User;
         this.objectNo       = 0;
+        
+        return this;
     }
     
-	
-	
-	/**
+    
+    
+    /**
      * 获取：主键ID
      */
     public String getPwpID()
@@ -122,9 +149,9 @@ public class ProcessParticipant extends Participant
     {
         this.pwpID = i_PwpID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：工作流的过程ID
      */
     public String getProcessID()
@@ -142,9 +169,9 @@ public class ProcessParticipant extends Participant
     {
         this.processID = i_ProcessID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：工作流实例ID
      */
     public String getWorkID()
@@ -162,8 +189,8 @@ public class ProcessParticipant extends Participant
     {
         this.workID = i_WorkID;
     }
-	
-	
+    
+    
     /**
      * 获取：第三方使用系统的业务数据ID。即支持用第三方ID也能找到工作流信息
      */
@@ -176,7 +203,7 @@ public class ProcessParticipant extends Participant
     /**
      * 设置：第三方使用系统的业务数据ID。即支持用第三方ID也能找到工作流信息
      * 
-     * @param serviceDataID 
+     * @param serviceDataID
      */
     public void setServiceDataID(String serviceDataID)
     {
@@ -202,9 +229,9 @@ public class ProcessParticipant extends Participant
     {
         this.createOrgID = i_CreateOrgID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：创建部门名称
      */
     public String getCreateOrg()
@@ -236,7 +263,7 @@ public class ProcessParticipant extends Participant
     /**
      * 设置：分单前的过程ID。合单前持续记录ID值
      * 
-     * @param splitProcessID 
+     * @param splitProcessID
      */
     public void setSplitProcessID(String splitProcessID)
     {

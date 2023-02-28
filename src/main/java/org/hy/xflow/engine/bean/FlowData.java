@@ -2,9 +2,8 @@ package org.hy.xflow.engine.bean;
 
 import java.util.List;
 
-import org.hy.xflow.engine.bean.User;
-import org.hy.xflow.engine.bean.UserParticipant;
 import org.hy.xflow.engine.common.BaseModel;
+import org.hy.xflow.engine.enums.RejectModeEnum;
 
 
 
@@ -40,14 +39,23 @@ public class FlowData extends BaseModel
     /** 工作流实例ID */
     private String                workID;
     
-    /** 路由编码 */
+    /** 单路流转：路由编码 */
     private String                activityRouteCode;
     
-    /** 指定下一活动的动态参与人 */
+    /** 单路驳回：活动节点的编码 */
+    private String                activityCode;
+    
+    /** 单路流转&驳回：指定下一活动的动态参与人 */
     private List<UserParticipant> participants;
     
     /** 多路并发的流转信息 */
     List<FlowDataRoute>           routes;
+    
+    /** 多路并发的自由驳回的流转信息（未在工作流模板上预先配置驳回路由） */
+    List<FlowDataActivity>        activitys;
+    
+    /** 驳回模式。auto:自动模式；team：协同模式 */
+    RejectModeEnum                rejectMode;
     
     /** 汇总值 */
     private Double                summary;
@@ -107,7 +115,7 @@ public class FlowData extends BaseModel
 
     
     /**
-     * 获取：路由编码
+     * 获取：单路流转：路由编码
      */
     public String getActivityRouteCode()
     {
@@ -117,7 +125,7 @@ public class FlowData extends BaseModel
 
     
     /**
-     * 获取：指定下一活动的动态参与人
+     * 获取：单路流转&驳回：指定下一活动的动态参与人
      */
     public List<UserParticipant> getParticipants()
     {
@@ -129,7 +137,7 @@ public class FlowData extends BaseModel
     /**
      * 设置：用户信息
      * 
-     * @param user 
+     * @param user
      */
     public void setUser(User user)
     {
@@ -141,7 +149,7 @@ public class FlowData extends BaseModel
     /**
      * 设置：工作流模板名称
      * 
-     * @param templateName 
+     * @param templateName
      */
     public void setTemplateName(String templateName)
     {
@@ -153,7 +161,7 @@ public class FlowData extends BaseModel
     /**
      * 设置：第三方使用系统的业务数据ID。即支持用第三方ID也能找到工作流信息
      * 
-     * @param serviceDataID 
+     * @param serviceDataID
      */
     public void setServiceDataID(String serviceDataID)
     {
@@ -165,7 +173,7 @@ public class FlowData extends BaseModel
     /**
      * 设置：工作流实例ID
      * 
-     * @param workID 
+     * @param workID
      */
     public void setWorkID(String workID)
     {
@@ -175,9 +183,9 @@ public class FlowData extends BaseModel
 
     
     /**
-     * 设置：路由编码
+     * 设置：单路流转：路由编码
      * 
-     * @param activityRouteCode 
+     * @param activityRouteCode
      */
     public void setActivityRouteCode(String activityRouteCode)
     {
@@ -187,9 +195,9 @@ public class FlowData extends BaseModel
 
     
     /**
-     * 设置：指定下一活动的动态参与人
+     * 设置：单路流转&驳回：指定下一活动的动态参与人
      * 
-     * @param participants 
+     * @param participants
      */
     public void setParticipants(List<UserParticipant> participants)
     {
@@ -211,7 +219,7 @@ public class FlowData extends BaseModel
     /**
      * 设置：模板版本号
      * 
-     * @param versionNo 
+     * @param versionNo
      */
     public void setVersionNo(Integer versionNo)
     {
@@ -273,7 +281,7 @@ public class FlowData extends BaseModel
     /**
      * 设置：汇总值
      * 
-     * @param summary 
+     * @param summary
      */
     public void setSummary(Double summary)
     {
@@ -285,7 +293,7 @@ public class FlowData extends BaseModel
     /**
      * 设置：提交汇总的总人数
      * 
-     * @param counter 
+     * @param counter
      */
     public void setCounter(Integer counter)
     {
@@ -297,7 +305,7 @@ public class FlowData extends BaseModel
     /**
      * 设置：操作文件信息，由第三方使用者定义其内容（拓展性数据）
      * 
-     * @param operateFiles 
+     * @param operateFiles
      */
     public void setOperateFiles(String operateFiles)
     {
@@ -309,7 +317,7 @@ public class FlowData extends BaseModel
     /**
      * 设置：操作数据信息，由第三方使用者定义其内容（拓展性数据）
      * 
-     * @param operateDatas 
+     * @param operateDatas
      */
     public void setOperateDatas(String operateDatas)
     {
@@ -321,7 +329,7 @@ public class FlowData extends BaseModel
     /**
      * 设置：备注说明
      * 
-     * @param infoComment 
+     * @param infoComment
      */
     public void setInfoComment(String infoComment)
     {
@@ -343,11 +351,77 @@ public class FlowData extends BaseModel
     /**
      * 设置：多路并发的流转信息
      * 
-     * @param routes 
+     * @param routes
      */
     public void setRoutes(List<FlowDataRoute> routes)
     {
         this.routes = routes;
+    }
+
+
+    
+    /**
+     * 获取：自由驳回的流转信息（未在工作流模板上预先配置驳回路由）
+     */
+    public List<FlowDataActivity> getActivitys()
+    {
+        return activitys;
+    }
+
+
+    
+    /**
+     * 设置：自由驳回的流转信息（未在工作流模板上预先配置驳回路由）
+     * 
+     * @param i_Activitys 自由驳回的流转信息（未在工作流模板上预先配置驳回路由）
+     */
+    public void setActivitys(List<FlowDataActivity> i_Activitys)
+    {
+        this.activitys = i_Activitys;
+    }
+
+
+    
+    /**
+     * 获取：单路驳回：活动节点的编码
+     */
+    public String getActivityCode()
+    {
+        return activityCode;
+    }
+
+
+    
+    /**
+     * 设置：单路驳回：活动节点的编码
+     * 
+     * @param i_ActivityCode 单路驳回：活动节点的编码
+     */
+    public void setActivityCode(String i_ActivityCode)
+    {
+        this.activityCode = i_ActivityCode;
+    }
+
+
+    
+    /**
+     * 获取：驳回模式。auto:自动模式；team：协同模式
+     */
+    public RejectModeEnum getRejectMode()
+    {
+        return rejectMode;
+    }
+
+
+    
+    /**
+     * 设置：驳回模式。auto:自动模式；team：协同模式
+     * 
+     * @param i_RejectMode 驳回模式。auto:自动模式；team：协同模式
+     */
+    public void setRejectMode(RejectModeEnum i_RejectMode)
+    {
+        this.rejectMode = i_RejectMode;
     }
     
 }

@@ -7,6 +7,7 @@ import org.hy.common.Help;
 import org.hy.xflow.engine.common.BaseModel;
 import org.hy.xflow.engine.common.IDHelp;
 import org.hy.xflow.engine.enums.ParticipantTypeEnum;
+import org.hy.xflow.engine.enums.RouteTypeEnum;
 
 
 
@@ -25,78 +26,78 @@ public class FlowProcess extends BaseModel
     
     
     /** 内存中的动态参数：流程模板ID */
-    private String templateID; 
+    private String templateID;
     
     /** 工作流的动态参与人 */
-	private List<ProcessParticipant> participants;
-	
-	/** 工作流的未来参与人（当有动态参与人时，取动态参与人。其它情况取工作流流程模板中定义的参与人） */
-	private List<ProcessParticipant> futureParticipants;
-	
-	/** 工作流的过程ID */
+    private List<ProcessParticipant> participants;
+    
+    /** 工作流的未来参与人（当有动态参与人时，取动态参与人。其它情况取工作流流程模板中定义的参与人） */
+    private List<ProcessParticipant> futureParticipants;
+    
+    /** 工作流的过程ID */
     private String  processID;
     
-	/** 工作流实例ID */
+    /** 工作流实例ID */
     private String  workID;
     
     /** 第三方使用系统的业务数据ID。即支持用第三方ID也能找到工作流信息 */
     private String  serviceDataID;
     
-	/** 分单前的过程ID。合单前持续记录ID值。不一定与previousProcessID同值 */
+    /** 分单前的过程ID。合单前持续记录ID值。不一定与previousProcessID同值 */
     private String  splitProcessID;
     
-	/** 工作流的过程编号。下标从1开始 */
+    /** 工作流的过程编号。下标从1开始 */
     private Integer processNo;
     
-	/** 当前活动ID */
+    /** 当前活动ID */
     private String  currentActivityID;
     
     /** 当前活动编码 */
     private String  currentActivityCode;
     
-	/** 当前活动名称 */
+    /** 当前活动名称 */
     private String  currentActivityName;
     
-	/** 上一过程ID */
+    /** 上一过程ID */
     private String  previousProcessID;
     
-	/** 上一活动ID */
+    /** 上一活动ID */
     private String  previousActivityID;
     
     /** 上一活动编码 */
     private String  previousActivityCode;
     
-	/** 上一活动名称 */
+    /** 上一活动名称 */
     private String  previousActivityName;
     
     /** 上一活动的操作类型ID */
     private String  previousOperateTypeID;
     
-	/** 下一过程ID */
+    /** 下一过程ID */
     private String  nextProcessID;
     
-	/** 下一活动ID */
+    /** 下一活动ID */
     private String  nextActivityID;
     
     /** 下一活动编码 */
     private String  nextActivityCode;
     
-	/** 下一活动名称 */
+    /** 下一活动名称 */
     private String  nextActivityName;
     
-	/** 创建人员ID */
+    /** 创建人员ID */
     private String  createrID;
     
-	/** 创建人员名称 */
+    /** 创建人员名称 */
     private String  creater;
     
-	/** 创建部门ID */
+    /** 创建部门ID */
     private String  createOrgID;
     
-	/** 创建部门名称 */
+    /** 创建部门名称 */
     private String  createOrg;
     
-	/** 创建时间 */
+    /** 创建时间 */
     private Date    createTime;
     
     /** 汇总值 */
@@ -117,49 +118,49 @@ public class FlowProcess extends BaseModel
     /** 汇总是否通过（0：未通过；1：通过） */
     private Integer isPass;
     
-	/** 限制操作人员ID */
+    /** 限制操作人员ID */
     private String  limitUserID;
     
-	/** 限制操作部门ID */
+    /** 限制操作部门ID */
     private String  limitOrgID;
     
-	/** 限制操作时间 */
+    /** 限制操作时间 */
     private Date    limitTime;
     
-	/** 操作时间 */
+    /** 操作时间 */
     private Date    operateTime;
     
-	/** 操作时长（单位：秒） */
+    /** 操作时长（单位：秒） */
     private Integer operateTimeLen;
     
-	/** 操作类型ID */
+    /** 操作类型ID */
     private String  operateTypeID;
     
-	/** 操作类型名称 */
+    /** 操作类型名称 */
     private String  operateType;
     
-	/** 操作人员ID */
+    /** 操作人员ID */
     private String  operateUserID;
     
-	/** 操作人员名称 */
+    /** 操作人员名称 */
     private String  operateUser;
     
-	/** 操作部门ID */
+    /** 操作部门ID */
     private String  operateOrgID;
     
-	/** 操作部门名称 */
+    /** 操作部门名称 */
     private String  operateOrg;
     
-	/** 操作文件信息，由第三方使用者定义其内容（拓展性数据） */
+    /** 操作文件信息，由第三方使用者定义其内容（拓展性数据） */
     private String  operateFiles;
     
-	/** 操作数据信息，由第三方使用者定义其内容（拓展性数据） */
+    /** 操作数据信息，由第三方使用者定义其内容（拓展性数据） */
     private String  operateDatas;
     
-	/** 备注说明 */
+    /** 备注说明 */
     private String  infoComment;
     
-	
+    
     
     public FlowProcess init_CreateFlow(User i_User ,FlowInfo i_Flow ,ActivityInfo i_Activity)
     {
@@ -280,6 +281,86 @@ public class FlowProcess extends BaseModel
     
     
     /**
+     * 初始自由驳回的工作流流转数据
+     * 
+     * @author      ZhengWei(HY)
+     * @createDate  2023-02-15
+     * @version     v1.0
+     *
+     * @param i_User
+     * @param i_Flow
+     * @param io_Previous
+     * @param i_RejectActivity  准备驳回到的活动节点（免除预先在工作流模板上配置驳回路由）
+     * @return
+     */
+    public FlowProcess init_ToReject(User i_User ,FlowInfo i_Flow ,FlowProcess io_Previous ,ActivityInfo i_RejectActivity)
+    {
+        this.templateID              = i_Flow.getFlowTemplateID();
+        this.processID               = IDHelp.makeID();
+        this.serviceDataID           = i_Flow.getServiceDataID();
+        this.workID                  = i_Flow.getWorkID();
+        this.splitProcessID          = io_Previous.getSplitProcessID();      // 保留之前的分派信息
+        this.currentActivityID       = i_RejectActivity.getActivityID();
+        this.currentActivityCode     = i_RejectActivity.getActivityCode();
+        this.currentActivityName     = i_RejectActivity.getActivityName();
+        
+        this.processNo               = -1;  //////////////////////////////////////
+        this.previousProcessID       = io_Previous.getProcessID();
+        this.previousActivityID      = io_Previous.getCurrentActivityID();
+        this.previousActivityCode    = io_Previous.getCurrentActivityCode();
+        this.previousActivityName    = io_Previous.getCurrentActivityName();
+        this.previousOperateTypeID   = RouteTypeEnum.$Reject_Auto.getValue();
+        
+        io_Previous.nextProcessID    = this.processID;
+        io_Previous.nextActivityID   = this.currentActivityID;
+        io_Previous.nextActivityCode = this.currentActivityCode;
+        io_Previous.nextActivityName = this.currentActivityName;
+        
+        this.nextProcessID           = "";
+        this.nextActivityID          = "";
+        this.nextActivityName        = "";
+        this.createrID               = i_User.getUserID();
+        this.creater                 = i_User.getUserName();
+        this.createOrgID             = i_User.getOrgID();
+        this.createOrg               = i_User.getOrgName();
+        this.createTime              = new Date();
+        this.limitUserID             = "";
+        this.limitOrgID              = "";
+        this.limitTime               = new Date("2000-01-01 00:00:00");
+        this.operateTime             = this.createTime;
+        this.operateTimeLen          = 0;
+        this.operateTypeID           = "";
+        this.operateType             = "";
+        this.operateUserID           = this.createrID;
+        this.operateUser             = this.creater;
+        this.operateOrgID            = this.createOrgID;
+        this.operateOrg              = this.createOrg;
+        
+        io_Previous.operateTime      = this.createTime;
+        io_Previous.operateTimeLen   = 0;
+        io_Previous.operateTypeID    = RouteTypeEnum.$Reject_Auto.getValue();
+        io_Previous.operateType      = RouteTypeEnum.$Reject_Auto.getDesc();
+        io_Previous.operateUserID    = this.createrID;
+        io_Previous.operateUser      = this.creater;
+        io_Previous.operateOrgID     = this.createOrgID;
+        io_Previous.operateOrg       = this.createOrg;
+        
+        this.operateFiles            = "";
+        this.operateDatas            = "";
+        this.infoComment             = "";
+        this.summary                 = 0D;
+        this.summaryPass             = 0D;
+        this.counter                 = 0;
+        this.counterPass             = 0;
+        this.passType                = "";
+        this.isPass                  = 0;
+        
+        return this;
+    }
+    
+    
+    
+    /**
      * 判定用户信息是否当前动态的参与人之一
      * 
      * @author      ZhengWei(HY)
@@ -316,7 +397,7 @@ public class FlowProcess extends BaseModel
                 if ( v_Participant.getObjectID().equals(i_User.getOrgID()) )
                 {
                     return v_Participant;
-                } 
+                }
             }
             else if ( ParticipantTypeEnum.$Role     == v_Participant.getObjectType()
                    || ParticipantTypeEnum.$RoleSend == v_Participant.getObjectType() )
@@ -340,7 +421,7 @@ public class FlowProcess extends BaseModel
     }
     
     
-	
+    
     /**
      * 获取：工作流的动态参与人
      */
@@ -353,7 +434,7 @@ public class FlowProcess extends BaseModel
     /**
      * 设置：工作流的动态参与人
      * 
-     * @param participants 
+     * @param participants
      */
     public void setParticipants(List<ProcessParticipant> participants)
     {
@@ -373,7 +454,7 @@ public class FlowProcess extends BaseModel
     /**
      * 设置：工作流的未来参与人（当有动态参与人时，取动态参与人。其它情况取工作流流程模板中定义的参与人）
      * 
-     * @param futureParticipants 
+     * @param futureParticipants
      */
     public void setFutureParticipants(List<ProcessParticipant> futureParticipants)
     {
@@ -399,9 +480,9 @@ public class FlowProcess extends BaseModel
     {
         this.processID = i_ProcessID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：工作流实例ID
      */
     public String getWorkID()
@@ -419,8 +500,8 @@ public class FlowProcess extends BaseModel
     {
         this.workID = i_WorkID;
     }
-	
-	
+    
+    
     /**
      * 获取：第三方使用系统的业务数据ID。即支持用第三方ID也能找到工作流信息
      */
@@ -433,7 +514,7 @@ public class FlowProcess extends BaseModel
     /**
      * 设置：第三方使用系统的业务数据ID。即支持用第三方ID也能找到工作流信息
      * 
-     * @param serviceDataID 
+     * @param serviceDataID
      */
     public void setServiceDataID(String serviceDataID)
     {
@@ -459,9 +540,9 @@ public class FlowProcess extends BaseModel
     {
         this.splitProcessID = i_SplitProcessID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：工作流的过程编号。下标从1开始
      */
     public Integer getProcessNo()
@@ -479,9 +560,9 @@ public class FlowProcess extends BaseModel
     {
         this.processNo = i_ProcessNo;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：当前活动ID
      */
     public String getCurrentActivityID()
@@ -499,8 +580,8 @@ public class FlowProcess extends BaseModel
     {
         this.currentActivityID = i_CurrentActivityID;
     }
-	
-	
+    
+    
     /**
      * 获取：当前活动编码
      */
@@ -513,7 +594,7 @@ public class FlowProcess extends BaseModel
     /**
      * 设置：当前活动编码
      * 
-     * @param currentActivityCode 
+     * @param currentActivityCode
      */
     public void setCurrentActivityCode(String currentActivityCode)
     {
@@ -539,9 +620,9 @@ public class FlowProcess extends BaseModel
     {
         this.currentActivityName = i_CurrentActivityName;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：上一过程ID
      */
     public String getPreviousProcessID()
@@ -559,9 +640,9 @@ public class FlowProcess extends BaseModel
     {
         this.previousProcessID = i_PreviousProcessID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：上一活动ID
      */
     public String getPreviousActivityID()
@@ -579,8 +660,8 @@ public class FlowProcess extends BaseModel
     {
         this.previousActivityID = i_PreviousActivityID;
     }
-	
-	
+    
+    
     /**
      * 获取：下一活动编码
      */
@@ -593,7 +674,7 @@ public class FlowProcess extends BaseModel
     /**
      * 设置：下一活动编码
      * 
-     * @param nextActivityCode 
+     * @param nextActivityCode
      */
     public void setNextActivityCode(String nextActivityCode)
     {
@@ -619,9 +700,9 @@ public class FlowProcess extends BaseModel
     {
         this.previousActivityName = i_PreviousActivityName;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：下一过程ID
      */
     public String getNextProcessID()
@@ -639,9 +720,9 @@ public class FlowProcess extends BaseModel
     {
         this.nextProcessID = i_NextProcessID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：下一活动ID
      */
     public String getNextActivityID()
@@ -659,8 +740,8 @@ public class FlowProcess extends BaseModel
     {
         this.nextActivityID = i_NextActivityID;
     }
-	
-	
+    
+    
     /**
      * 获取：上一活动编码
      */
@@ -673,7 +754,7 @@ public class FlowProcess extends BaseModel
     /**
      * 设置：上一活动编码
      * 
-     * @param previousActivityCode 
+     * @param previousActivityCode
      */
     public void setPreviousActivityCode(String previousActivityCode)
     {
@@ -699,9 +780,9 @@ public class FlowProcess extends BaseModel
     {
         this.nextActivityName = i_NextActivityName;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：创建人员ID
      */
     public String getCreaterID()
@@ -719,9 +800,9 @@ public class FlowProcess extends BaseModel
     {
         this.createrID = i_CreaterID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：创建人员名称
      */
     public String getCreater()
@@ -739,9 +820,9 @@ public class FlowProcess extends BaseModel
     {
         this.creater = i_Creater;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：创建部门ID
      */
     public String getCreateOrgID()
@@ -759,9 +840,9 @@ public class FlowProcess extends BaseModel
     {
         this.createOrgID = i_CreateOrgID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：创建部门名称
      */
     public String getCreateOrg()
@@ -779,9 +860,9 @@ public class FlowProcess extends BaseModel
     {
         this.createOrg = i_CreateOrg;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：创建时间
      */
     public Date getCreateTime()
@@ -799,9 +880,9 @@ public class FlowProcess extends BaseModel
     {
         this.createTime = i_CreateTime;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：限制操作人员ID
      */
     public String getLimitUserID()
@@ -819,9 +900,9 @@ public class FlowProcess extends BaseModel
     {
         this.limitUserID = i_LimitUserID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：限制操作部门ID
      */
     public String getLimitOrgID()
@@ -839,9 +920,9 @@ public class FlowProcess extends BaseModel
     {
         this.limitOrgID = i_LimitOrgID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：限制操作时间
      */
     public Date getLimitTime()
@@ -859,9 +940,9 @@ public class FlowProcess extends BaseModel
     {
         this.limitTime = i_LimitTime;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：操作时间
      */
     public Date getOperateTime()
@@ -879,9 +960,9 @@ public class FlowProcess extends BaseModel
     {
         this.operateTime = i_OperateTime;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：操作时长（单位：秒）
      */
     public Integer getOperateTimeLen()
@@ -899,9 +980,9 @@ public class FlowProcess extends BaseModel
     {
         this.operateTimeLen = i_OperateTimeLen;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：操作类型ID
      */
     public String getOperateTypeID()
@@ -919,9 +1000,9 @@ public class FlowProcess extends BaseModel
     {
         this.operateTypeID = i_OperateTypeID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：操作类型名称
      */
     public String getOperateType()
@@ -939,9 +1020,9 @@ public class FlowProcess extends BaseModel
     {
         this.operateType = i_OperateType;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：操作人员ID
      */
     public String getOperateUserID()
@@ -959,9 +1040,9 @@ public class FlowProcess extends BaseModel
     {
         this.operateUserID = i_OperateUserID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：操作人员名称
      */
     public String getOperateUser()
@@ -979,9 +1060,9 @@ public class FlowProcess extends BaseModel
     {
         this.operateUser = i_OperateUser;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：操作部门ID
      */
     public String getOperateOrgID()
@@ -999,9 +1080,9 @@ public class FlowProcess extends BaseModel
     {
         this.operateOrgID = i_OperateOrgID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：操作部门名称
      */
     public String getOperateOrg()
@@ -1019,9 +1100,9 @@ public class FlowProcess extends BaseModel
     {
         this.operateOrg = i_OperateOrg;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：操作文件信息，由第三方使用者定义其内容（拓展性数据）
      */
     public String getOperateFiles()
@@ -1039,9 +1120,9 @@ public class FlowProcess extends BaseModel
     {
         this.operateFiles = i_OperateFiles;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：操作数据信息，由第三方使用者定义其内容（拓展性数据）
      */
     public String getOperateDatas()
@@ -1059,9 +1140,9 @@ public class FlowProcess extends BaseModel
     {
         this.operateDatas = i_OperateDatas;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：备注说明
      */
     public String getInfoComment()
@@ -1093,7 +1174,7 @@ public class FlowProcess extends BaseModel
     /**
      * 设置：内存中的动态参数：流程模板ID
      * 
-     * @param templateID 
+     * @param templateID
      */
     public void setTemplateID(String templateID)
     {
@@ -1122,7 +1203,7 @@ public class FlowProcess extends BaseModel
     /**
      * 设置：汇总值
      * 
-     * @param summary 
+     * @param summary
      */
     public void setSummary(Double summary)
     {
@@ -1133,7 +1214,7 @@ public class FlowProcess extends BaseModel
     /**
      * 设置：汇总通过值。当大于等于此值后，才能继续向下流转
      * 
-     * @param summaryPass 
+     * @param summaryPass
      */
     public void setSummaryPass(Double summaryPass)
     {
@@ -1153,7 +1234,7 @@ public class FlowProcess extends BaseModel
     /**
      * 设置：汇总是否通过（0：未通过；1：通过）
      * 
-     * @param isPass 
+     * @param isPass
      */
     public void setIsPass(Integer isPass)
     {
@@ -1173,7 +1254,7 @@ public class FlowProcess extends BaseModel
     /**
      * 设置：上一活动的操作类型ID
      * 
-     * @param previousOperateTypeID 
+     * @param previousOperateTypeID
      */
     public void setPreviousOperateTypeID(String previousOperateTypeID)
     {
@@ -1211,7 +1292,7 @@ public class FlowProcess extends BaseModel
     /**
      * 设置：提交汇总的总人数
      * 
-     * @param counter 
+     * @param counter
      */
     public void setCounter(Integer counter)
     {
@@ -1222,7 +1303,7 @@ public class FlowProcess extends BaseModel
     /**
      * 设置：汇总人数的限制。当大于等于此值后，才能继续向下流转
      * 
-     * @param counterPass 
+     * @param counterPass
      */
     public void setCounterPass(Integer counterPass)
     {
@@ -1233,7 +1314,7 @@ public class FlowProcess extends BaseModel
     /**
      * 设置：汇总类型。指summaryPass和counterPass的关系是与，还是或
      * 
-     * @param passType 
+     * @param passType
      */
     public void setPassType(String passType)
     {
