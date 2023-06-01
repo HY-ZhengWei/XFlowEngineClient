@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hy.common.Help;
+import org.hy.common.StringHelp;
 import org.hy.xflow.engine.common.BaseModel;
 
 
@@ -37,6 +38,29 @@ public class User extends BaseModel
     
     /** 用户角色。支持多角色功能 */
     private List<UserRole> roles;
+    
+    
+    
+    /**
+     * 角色集合中ID的字符串转化
+     * 
+     * @author      ZhengWei(HY)
+     * @createDate  2023-06-01
+     * @version     v1.0
+     *
+     * @return
+     */
+    public String getRoleIDs()
+    {
+        if ( Help.isNull(this.roles) )
+        {
+            return null;
+        }
+        else
+        {
+            return StringHelp.toString(Help.toList(this.roles ,"roleID"));
+        }
+    }
     
     
     
@@ -102,7 +126,7 @@ public class User extends BaseModel
     /**
      * 设置：用户ID
      * 
-     * @param userID 
+     * @param userID
      */
     public void setUserID(String userID)
     {
@@ -113,7 +137,7 @@ public class User extends BaseModel
     /**
      * 设置：用户名称
      * 
-     * @param userName 
+     * @param userName
      */
     public void setUserName(String userName)
     {
@@ -124,7 +148,7 @@ public class User extends BaseModel
     /**
      * 设置：部门ID
      * 
-     * @param orgID 
+     * @param orgID
      */
     public void setOrgID(String orgID)
     {
@@ -135,7 +159,7 @@ public class User extends BaseModel
     /**
      * 设置：部门名称
      * 
-     * @param orgName 
+     * @param orgName
      */
     public void setOrgName(String orgName)
     {
@@ -157,7 +181,7 @@ public class User extends BaseModel
     /**
      * 设置：用户角色。支持多角色功能
      * 
-     * @param roles 
+     * @param roles
      */
     public void setRoles(List<UserRole> roles)
     {
