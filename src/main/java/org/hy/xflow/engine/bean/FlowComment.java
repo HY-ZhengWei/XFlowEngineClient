@@ -48,20 +48,18 @@ public class FlowComment extends BaseModel
     /** 参与者类型  */
     private ParticipantTypeEnum objectType;
     
-    /** 创建人员ID */
-    private String  createrID;
-    
-    /** 创建人员名称 */
-    private String  creater;
-    
-    /** 创建部门ID */
-    private String  createOrgID;
-    
-    /** 创建部门名称 */
-    private String  createOrg;
+    /** 创建工作备注的人员信息 */
+    private User    createUser;
     
     /** 创建时间 */
     private Date    createTime;
+    
+    
+    
+    public FlowComment()
+    {
+        this.createUser = new User();
+    }
 
     
     /**
@@ -249,7 +247,7 @@ public class FlowComment extends BaseModel
      */
     public String getCreaterID()
     {
-        return createrID;
+        return this.createUser.getUserID();
     }
 
     
@@ -260,7 +258,7 @@ public class FlowComment extends BaseModel
      */
     public void setCreaterID(String i_CreaterID)
     {
-        this.createrID = i_CreaterID;
+        this.createUser.setUserID(i_CreaterID);
     }
 
     
@@ -269,7 +267,7 @@ public class FlowComment extends BaseModel
      */
     public String getCreater()
     {
-        return creater;
+        return this.createUser.getUserName();
     }
 
     
@@ -280,7 +278,7 @@ public class FlowComment extends BaseModel
      */
     public void setCreater(String i_Creater)
     {
-        this.creater = i_Creater;
+        this.createUser.setUserName(i_Creater);
     }
 
     
@@ -289,7 +287,7 @@ public class FlowComment extends BaseModel
      */
     public String getCreateOrgID()
     {
-        return createOrgID;
+        return this.createUser.getOrgID();
     }
 
     
@@ -300,7 +298,7 @@ public class FlowComment extends BaseModel
      */
     public void setCreateOrgID(String i_CreateOrgID)
     {
-        this.createOrgID = i_CreateOrgID;
+        this.createUser.setOrgID(i_CreateOrgID);
     }
 
     
@@ -309,7 +307,7 @@ public class FlowComment extends BaseModel
      */
     public String getCreateOrg()
     {
-        return createOrg;
+        return this.createUser.getOrgName();
     }
 
     
@@ -320,7 +318,7 @@ public class FlowComment extends BaseModel
      */
     public void setCreateOrg(String i_CreateOrg)
     {
-        this.createOrg = i_CreateOrg;
+        this.createUser.setOrgName(i_CreateOrg);
     }
 
     
@@ -341,6 +339,26 @@ public class FlowComment extends BaseModel
     public void setCreateTime(Date i_CreateTime)
     {
         this.createTime = i_CreateTime;
+    }
+
+    
+    /**
+     * 获取：创建工作备注的人员信息
+     */
+    public User getCreateUser()
+    {
+        return createUser;
+    }
+
+    
+    /**
+     * 设置：创建工作备注的人员信息
+     * 
+     * @param i_CreateUser 创建工作备注的人员信息
+     */
+    public void setCreateUser(User i_CreateUser)
+    {
+        this.createUser = i_CreateUser;
     }
 
 }
