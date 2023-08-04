@@ -79,6 +79,9 @@ public class FlowInfo extends BaseModel
 	/** 是否删除标记(0:未删除；1:已删除) */
     private Integer isDelete;
     
+    /** 是否转历史(0:流转中； 1:已转历史) */
+    private Integer isHistory;
+    
     
     
     public FlowInfo()
@@ -107,6 +110,7 @@ public class FlowInfo extends BaseModel
         this.lastProcessID  = IDHelp.makeID();
         this.isValid        = 1;
         this.isDelete       = 0;
+        this.isHistory      = 0;
     }
     
     
@@ -151,7 +155,7 @@ public class FlowInfo extends BaseModel
     /**
      * 设置：流转过程。（内存合成）
      * 
-     * @param processes 
+     * @param processes
      */
     public void setProcesses(List<FlowProcess> processes)
     {
@@ -496,6 +500,26 @@ public class FlowInfo extends BaseModel
     public void setIsDelete(Integer i_IsDelete)
     {
         this.isDelete = i_IsDelete;
+    }
+
+    
+    /**
+     * 获取：是否转历史(0:流转中； 1:已转历史)
+     */
+    public Integer getIsHistory()
+    {
+        return isHistory;
+    }
+
+
+    /**
+     * 设置：是否转历史(0:流转中； 1:已转历史)
+     * 
+     * @param i_IsHistory 是否转历史(0:流转中； 1:已转历史)
+     */
+    public void setIsHistory(Integer i_IsHistory)
+    {
+        this.isHistory = i_IsHistory;
     }
 
 }
