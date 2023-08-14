@@ -37,6 +37,9 @@ public class FlowInfo extends BaseModel
 	/** 工作流的模板ID */
     private String flowTemplateID;
     
+    /** 工作流的模板版本号（数值递增型） */
+    private Integer templateVersionNo;
+    
 	/** 第三方使用系统的业务数据ID。即支持用第三方ID也能找到工作流信息 */
     private String serviceDataID;
     
@@ -93,24 +96,25 @@ public class FlowInfo extends BaseModel
     
     public FlowInfo(User i_User ,Template i_Template ,String i_ServiceDataID)
     {
-        this.workID         = IDHelp.makeID();
-        this.workFatherID   = "";
-        this.flowTemplateID = i_Template.getTemplateID();
-        this.serviceDataID  = Help.NVL(i_ServiceDataID);
-        this.createrID      = i_User.getUserID();
-        this.creater        = i_User.getUserName();
-        this.createOrgID    = i_User.getOrgID();
-        this.createOrg      = i_User.getOrgName();
-        this.createTime     = new Date();
-        this.lastUserID     = this.createrID;
-        this.lastUser       = this.creater;
-        this.lastTime       = this.createTime;
-        this.lastOrgID      = this.createOrgID;
-        this.lastOrg        = this.createOrg;
-        this.lastProcessID  = IDHelp.makeID();
-        this.isValid        = 1;
-        this.isDelete       = 0;
-        this.isHistory      = 0;
+        this.workID            = IDHelp.makeID();
+        this.workFatherID      = "";
+        this.flowTemplateID    = i_Template.getTemplateID();
+        this.templateVersionNo = i_Template.getVersionNo();
+        this.serviceDataID     = Help.NVL(i_ServiceDataID);
+        this.createrID         = i_User.getUserID();
+        this.creater           = i_User.getUserName();
+        this.createOrgID       = i_User.getOrgID();
+        this.createOrg         = i_User.getOrgName();
+        this.createTime        = new Date();
+        this.lastUserID        = this.createrID;
+        this.lastUser          = this.creater;
+        this.lastTime          = this.createTime;
+        this.lastOrgID         = this.createOrgID;
+        this.lastOrg           = this.createOrg;
+        this.lastProcessID     = IDHelp.makeID();
+        this.isValid           = 1;
+        this.isDelete          = 0;
+        this.isHistory         = 0;
     }
     
     
@@ -521,5 +525,25 @@ public class FlowInfo extends BaseModel
     {
         this.isHistory = i_IsHistory;
     }
+
+
+    /**
+     * 获取：工作流的模板版本号（数值递增型）
+     */
+	public Integer getTemplateVersionNo() 
+	{
+		return templateVersionNo;
+	}
+
+
+	/**
+     * 设置：工作流的模板版本号（数值递增型）
+     * 
+     * @param i_TemplateVersionNo 工作流的模板版本号（数值递增型）
+     */
+	public void setTemplateVersionNo(Integer i_TemplateVersionNo) 
+	{
+		this.templateVersionNo = i_TemplateVersionNo;
+	}
 
 }
