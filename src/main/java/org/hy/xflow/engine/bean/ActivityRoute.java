@@ -51,7 +51,7 @@ public class ActivityRoute extends BaseModel
     /** 本路由的参与人，是否为流程发起人。（内存合成） */
     private Participant participantByCreater;
     
-    /** 
+    /**
      * 本路由的参与人，是否为另一个活动的实际操作人。（内存合成）
      * 
      * Map.key为Participant.objectID，即另一个活动的ActivityID
@@ -77,43 +77,46 @@ public class ActivityRoute extends BaseModel
     private ActivityInfo nextActivity;
     
 	/** 有条件判定时，执行的XJava对象ID */
-    private String conditionXJavaID;
+    private String  conditionXJavaID;
     
 	/** 有条件判定时，执行的对象方法名称 */
-    private String conditionMethod;
+    private String  conditionMethod;
     
 	/** 有条件判定时，方法执行结果的对比值 */
-    private String conditionValue;
+    private String  conditionValue;
     
 	/** 有条件判定时，对比值的数据类型（1:数字；2:布尔值；3:文本） */
     private Integer conditionVType;
     
     /** 路由连接线的颜色 */
-    private String lineColor;
+    private String  lineColor;
     
     /** 路由连接线的文字颜色 */
-    private String fontColor;
+    private String  fontColor;
     
 	/** 备注说明 */
-    private String infoComment;
+    private String  infoComment;
     
 	/** 创建人员ID */
-    private String createrID;
+    private String  createrID;
     
 	/** 创建人员名称 */
-    private String creater;
+    private String  creater;
     
 	/** 创建时间 */
-    private Date createTime;
+    private Date    createTime;
     
 	/** 最后修改人员ID */
-    private String lastUserID;
+    private String  lastUserID;
     
 	/** 最后修改人员名称 */
-    private String lastUser;
+    private String  lastUser;
     
 	/** 最后修改时间 */
-    private Date lastTime;
+    private Date    lastTime;
+    
+    /** 权重。权重值越大，优先级越高 */
+    private Integer weight;
     
 	
     
@@ -154,7 +157,7 @@ public class ActivityRoute extends BaseModel
                 if ( v_Participant.getObjectID().equals(i_User.getOrgID()) )
                 {
                     return v_Participant;
-                } 
+                }
             }
             else if ( ParticipantTypeEnum.$Role     == v_Participant.getObjectType()
                    || ParticipantTypeEnum.$RoleSend == v_Participant.getObjectType() )
@@ -235,7 +238,7 @@ public class ActivityRoute extends BaseModel
     /**
      * 设置：路由A-B两端，从A到B的A端活动（内存合成）
      * 
-     * @param activity 
+     * @param activity
      */
     public void setActivity(ActivityInfo activity)
     {
@@ -246,7 +249,7 @@ public class ActivityRoute extends BaseModel
     /**
      * 设置：下一活动（内存合成）
      * 
-     * @param nextActivity 
+     * @param nextActivity
      */
     public void setNextActivity(ActivityInfo nextActivity)
     {
@@ -266,7 +269,7 @@ public class ActivityRoute extends BaseModel
     /**
      * 设置：主键ID
      * 
-     * @param activityRouteID 
+     * @param activityRouteID
      */
     public void setActivityRouteID(String activityRouteID)
     {
@@ -286,7 +289,7 @@ public class ActivityRoute extends BaseModel
     /**
      * 设置：活动路由Code。作为与外界交互的编码。同一版本的工作流下是惟一的，不同版本的同类工作流可以相同。
      * 
-     * @param activityRouteCode 
+     * @param activityRouteCode
      */
     public void setActivityRouteCode(String activityRouteCode)
     {
@@ -306,7 +309,7 @@ public class ActivityRoute extends BaseModel
     /**
      * 设置：活动路由名称
      * 
-     * @param activityRouteName 
+     * @param activityRouteName
      */
     public void setActivityRouteName(String activityRouteName)
     {
@@ -346,7 +349,7 @@ public class ActivityRoute extends BaseModel
     /**
      * 设置：工作流活动编码
      * 
-     * @param activityCode 
+     * @param activityCode
      */
     public void setActivityCode(String activityCode)
     {
@@ -404,7 +407,7 @@ public class ActivityRoute extends BaseModel
     /**
      * 设置：工作流路由的参与人。谁从此路过。（内存合成）
      * 
-     * @param participants 
+     * @param participants
      */
     public void setParticipants(List<Participant> participants)
     {
@@ -426,7 +429,7 @@ public class ActivityRoute extends BaseModel
     /**
      * 设置：本活动组件（节点）的参与人，是否为流程发起人。（内存合成）
      * 
-     * @param participantByCreater 
+     * @param participantByCreater
      */
     public void setParticipantByCreater(Participant participantByCreater)
     {
@@ -450,7 +453,7 @@ public class ActivityRoute extends BaseModel
      * 
      * Map.key为Participant.objectID，即另一个活动的ActivityID
      * 
-     * @param participantByActivitys 
+     * @param participantByActivitys
      */
     public void setParticipantByActivitys(Map<String ,Participant> participantByActivitys)
     {
@@ -461,7 +464,7 @@ public class ActivityRoute extends BaseModel
     /**
      * 设置：工作流路由类型ID
      * 
-     * @param routeTypeID 
+     * @param routeTypeID
      */
     public void setRouteTypeID(RouteTypeEnum routeTypeID)
     {
@@ -472,7 +475,7 @@ public class ActivityRoute extends BaseModel
     /**
      * 设置：工作流路由类型（内存合成）
      * 
-     * @param routeType 
+     * @param routeType
      */
     public void setRouteType(RouteType routeType)
     {
@@ -512,7 +515,7 @@ public class ActivityRoute extends BaseModel
     /**
      * 设置：下一活动编码
      * 
-     * @param nextActivityCode 
+     * @param nextActivityCode
      */
     public void setNextActivityCode(String nextActivityCode)
     {
@@ -612,7 +615,7 @@ public class ActivityRoute extends BaseModel
     /**
      * 设置：路由连接线的颜色
      * 
-     * @param lineColor 
+     * @param lineColor
      */
     public void setLineColor(String lineColor)
     {
@@ -772,11 +775,31 @@ public class ActivityRoute extends BaseModel
     /**
      * 设置：路由连接线的文字颜色
      * 
-     * @param fontColor 
+     * @param fontColor
      */
     public void setFontColor(String fontColor)
     {
         this.fontColor = fontColor;
+    }
+
+
+    /**
+     * 获取：权重。权重值越大，优先级越高
+     */
+    public Integer getWeight()
+    {
+        return weight;
+    }
+
+    
+    /**
+     * 设置：权重。权重值越大，优先级越高
+     * 
+     * @param i_Weight 权重。权重值越大，优先级越高
+     */
+    public void setWeight(Integer i_Weight)
+    {
+        this.weight = i_Weight;
     }
 
 }

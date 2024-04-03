@@ -25,11 +25,16 @@ import org.hy.xflow.engine.enums.ActivityTypeEnum;
  * @version     v1.0
  *              v2.0  2018-09-05  添加：支持多个结束出口的工作流程
  *              v3.0  2019-09-16  添加：allRoutesByNextACode属性，实现用当前活动、下一活动找路由信息。
+ *              v4.0  2024-04-03  添加：自动流转时的路由标示
  */
 public class ActivityRouteTree extends BaseModel
 {
     
     private static final long serialVersionUID = 5366730038571520921L;
+    
+    /** 自动流转时的路由标示 */
+    public static final String $AutoActivityRouteCode = "AUTO";
+    
     
 
     /** 模板的所有活动。Map.key为活动Code */
@@ -67,7 +72,7 @@ public class ActivityRouteTree extends BaseModel
     
     
     
-    public ActivityRouteTree(Map<String ,ActivityInfo>           i_AllActivitys 
+    public ActivityRouteTree(Map<String ,ActivityInfo>           i_AllActivitys
                             ,PartitionMap<String ,ActivityRoute> i_AllRoutes
                             ,PartitionMap<String ,Participant>   i_AllActivityPs
                             ,PartitionMap<String ,Participant>   i_AllActivityRoutePs)
@@ -152,7 +157,7 @@ public class ActivityRouteTree extends BaseModel
     
     
     /**
-     * 按活动编码获取活动对象。通过它可进入步获取下一步的所有节点 
+     * 按活动编码获取活动对象。通过它可进入步获取下一步的所有节点
      * 
      * @author      ZhengWei(HY)
      * @createDate  2018-04-19
@@ -190,6 +195,7 @@ public class ActivityRouteTree extends BaseModel
      * @author      ZhengWei(HY)
      * @createDate  2018-05-07
      * @version     v1.0
+     *              v2.0  2024-04-03  添加：支持自动流转的时的路由标示
      *
      * @param i_ActivityCode       活动编码
      * @param i_ActivityRouteCode  路由编码
@@ -197,7 +203,14 @@ public class ActivityRouteTree extends BaseModel
      */
     public ActivityRoute getActivityRoute(String i_ActivityCode ,String i_ActivityRouteCode)
     {
-        return this.allRoutesByARCode.get(i_ActivityCode).get(i_ActivityRouteCode);
+        if ( $AutoActivityRouteCode.equals(i_ActivityRouteCode) )
+        {
+            return this.allRoutesByARCode.get(i_ActivityCode).values().iterator().next();
+        }
+        else
+        {
+            return this.allRoutesByARCode.get(i_ActivityCode).get(i_ActivityRouteCode);
+        }
     }
     
     
@@ -248,10 +261,10 @@ public class ActivityRouteTree extends BaseModel
     @SuppressWarnings("unchecked")
     public void makeActivityRouteTree()
     {
-        if ( Help.isNull(allActivitys) 
-          || Help.isNull(allRoutes) 
+        if ( Help.isNull(allActivitys)
+          || Help.isNull(allRoutes)
           || Help.isNull(allActivityPs)
-          || this.startActivity == null 
+          || this.startActivity == null
           || Help.isNull(this.endActivitys) )
         {
             return;
