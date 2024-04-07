@@ -18,33 +18,33 @@ import org.hy.xflow.engine.enums.ParticipantTypeEnum;
 public class Participant extends UserParticipant
 {
     private static final long serialVersionUID = -4724247321457107633L;
-	
     
-	/** 主键ID */
+    
+    /** 主键ID */
     protected String participantID;
     
-	/** 工作流的模板ID */
+    /** 工作流的模板ID */
     protected String templateID;
     
     /** 活动ID */
     protected String activityID;
     
-	/** 活动路由ID */
+    /** 活动路由ID */
     protected String activityRouteID;
     
     /** 参与者类型（内存合成） */
     protected ParticipantType participantType;
     
-	/** 创建人员ID */
+    /** 创建人员ID */
     protected String createrID;
     
-	/** 创建人员名称 */
+    /** 创建人员名称 */
     protected String creater;
     
-	/** 创建时间 */
-    protected Date createTime;
+    /** 创建时间 */
+    protected Date   createTime;
     
-	
+    
     
     /**
      * 转义，将 "发起人" 类型的转义为真正的发起人ID。
@@ -53,7 +53,7 @@ public class Participant extends UserParticipant
      * @createDate  2018-05-14
      * @version     v1.0
      *
-     * @param i_Flow  工作流实例 
+     * @param i_Flow  工作流实例
      * @return
      */
     public Participant toCreater(FlowInfo i_Flow)
@@ -106,7 +106,7 @@ public class Participant extends UserParticipant
     /**
      * 设置：主键ID
      * 
-     * @param participantID 
+     * @param participantID
      */
     public void setParticipantID(String participantID)
     {
@@ -126,7 +126,7 @@ public class Participant extends UserParticipant
     /**
      * 设置：活动ID
      * 
-     * @param activityID 
+     * @param activityID
      */
     public void setActivityID(String activityID)
     {
@@ -146,7 +146,7 @@ public class Participant extends UserParticipant
     /**
      * 设置：活动路由ID
      * 
-     * @param activityRouteID 
+     * @param activityRouteID
      */
     public void setActivityRouteID(String activityRouteID)
     {
@@ -166,7 +166,7 @@ public class Participant extends UserParticipant
     /**
      * 设置：工作流的模板ID
      * 
-     * @param templateID 
+     * @param templateID
      */
     public void setTemplateID(String templateID)
     {
@@ -186,7 +186,7 @@ public class Participant extends UserParticipant
     /**
      * 设置：参与者类型（内存合成）
      * 
-     * @param participantType 
+     * @param participantType
      */
     public void setParticipantType(ParticipantType participantType)
     {
@@ -194,7 +194,7 @@ public class Participant extends UserParticipant
     }
 
 
-	/**
+    /**
      * 获取：创建人员ID
      */
     public String getCreaterID()
@@ -212,9 +212,9 @@ public class Participant extends UserParticipant
     {
         this.createrID = i_CreaterID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：创建人员名称
      */
     public String getCreater()
@@ -232,9 +232,9 @@ public class Participant extends UserParticipant
     {
         this.creater = i_Creater;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：创建时间
      */
     public Date getCreateTime()

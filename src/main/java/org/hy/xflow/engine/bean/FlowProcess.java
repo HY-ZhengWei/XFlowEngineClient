@@ -26,139 +26,142 @@ public class FlowProcess extends BaseModel
     
     
     /** 内存中的动态参数：流程模板ID */
-    private String templateID;
+    private String                     templateID;
     
     /** 工作流的动态参与人 */
-    private List<ProcessParticipant> participants;
+    private List<ProcessParticipant>   participants;
     
     /** 工作流的未来参与人（当有动态参与人时，取动态参与人。其它情况取工作流流程模板中定义的参与人） */
-    private List<ProcessParticipant> futureParticipants;
+    private List<ProcessParticipant>   futureParticipants;
     
     /** 工作流的过程ID */
-    private String  processID;
+    private String                     processID;
     
     /** 工作流实例ID */
-    private String  workID;
+    private String                     workID;
     
     /** 第三方使用系统的业务数据ID。即支持用第三方ID也能找到工作流信息 */
-    private String  serviceDataID;
+    private String                     serviceDataID;
     
     /** 分单前的过程ID。合单前持续记录ID值。不一定与previousProcessID同值 */
-    private String  splitProcessID;
+    private String                     splitProcessID;
     
     /** 工作流的过程编号。下标从1开始 */
-    private Integer processNo;
+    private Integer                    processNo;
     
     /** 当前活动ID */
-    private String  currentActivityID;
+    private String                     currentActivityID;
     
     /** 当前活动编码 */
-    private String  currentActivityCode;
+    private String                     currentActivityCode;
     
     /** 当前活动名称 */
-    private String  currentActivityName;
+    private String                     currentActivityName;
     
     /** 上一过程ID */
-    private String  previousProcessID;
+    private String                     previousProcessID;
     
     /** 上一活动ID */
-    private String  previousActivityID;
+    private String                     previousActivityID;
     
     /** 上一活动编码 */
-    private String  previousActivityCode;
+    private String                     previousActivityCode;
     
     /** 上一活动名称 */
-    private String  previousActivityName;
+    private String                     previousActivityName;
     
     /** 上一活动的操作类型ID */
-    private String  previousOperateTypeID;
+    private String                     previousOperateTypeID;
     
     /** 下一过程ID */
-    private String  nextProcessID;
+    private String                     nextProcessID;
     
     /** 下一活动ID */
-    private String  nextActivityID;
+    private String                     nextActivityID;
     
     /** 下一活动编码 */
-    private String  nextActivityCode;
+    private String                     nextActivityCode;
     
     /** 下一活动名称 */
-    private String  nextActivityName;
+    private String                     nextActivityName;
     
     /** 创建人员ID */
-    private String  createrID;
+    private String                     createrID;
     
     /** 创建人员名称 */
-    private String  creater;
+    private String                     creater;
     
     /** 创建部门ID */
-    private String  createOrgID;
+    private String                     createOrgID;
     
     /** 创建部门名称 */
-    private String  createOrg;
+    private String                     createOrg;
     
     /** 创建时间 */
-    private Date    createTime;
+    private Date                       createTime;
     
     /** 汇总值 */
-    private Double  summary;
+    private Double                     summary;
     
     /** 汇总通过值。当大于等于此值后，才能继续向下流转 */
-    private Double  summaryPass;
+    private Double                     summaryPass;
     
     /** 提交汇总的总人数 */
-    private Integer counter;
+    private Integer                    counter;
     
     /** 汇总人数的限制。当大于等于此值后，才能继续向下流转 */
-    private Integer counterPass;
+    private Integer                    counterPass;
     
     /** 汇总类型。指summaryPass和counterPass的关系是与，还是或 */
-    private String  passType;
+    private String                     passType;
     
     /** 汇总是否通过（0：未通过；1：通过） */
-    private Integer isPass;
+    private Integer                    isPass;
     
     /** 限制操作人员ID */
-    private String  limitUserID;
+    private String                     limitUserID;
     
     /** 限制操作部门ID */
-    private String  limitOrgID;
+    private String                     limitOrgID;
     
     /** 限制操作时间 */
-    private Date    limitTime;
+    private Date                       limitTime;
     
     /** 操作时间 */
-    private Date    operateTime;
+    private Date                       operateTime;
     
     /** 操作时长（单位：秒） */
-    private Integer operateTimeLen;
+    private Integer                    operateTimeLen;
     
     /** 操作类型ID */
-    private String  operateTypeID;
+    private String                     operateTypeID;
     
     /** 操作类型名称 */
-    private String  operateType;
+    private String                     operateType;
     
     /** 操作人员ID */
-    private String  operateUserID;
+    private String                     operateUserID;
     
     /** 操作人员名称 */
-    private String  operateUser;
+    private String                     operateUser;
     
     /** 操作部门ID */
-    private String  operateOrgID;
+    private String                     operateOrgID;
     
     /** 操作部门名称 */
-    private String  operateOrg;
+    private String                     operateOrg;
     
     /** 操作文件信息，由第三方使用者定义其内容（拓展性数据） */
-    private String  operateFiles;
+    private String                     operateFiles;
     
     /** 操作数据信息，由第三方使用者定义其内容（拓展性数据） */
-    private String  operateDatas;
+    private String                     operateDatas;
     
     /** 备注说明 */
-    private String  infoComment;
+    private String                     infoComment;
+    
+    /** 汇签 */
+    private ProcessCounterSignatureLog counterSignature;
     
     
     
@@ -1319,6 +1322,26 @@ public class FlowProcess extends BaseModel
     public void setPassType(String passType)
     {
         this.passType = passType;
+    }
+
+
+    /**
+     * 获取：汇签
+     */
+    public ProcessCounterSignatureLog getCounterSignature()
+    {
+        return counterSignature;
+    }
+
+    
+    /**
+     * 设置：汇签
+     * 
+     * @param i_CounterSignature 汇签
+     */
+    public void setCounterSignature(ProcessCounterSignatureLog i_CounterSignature)
+    {
+        this.counterSignature = i_CounterSignature;
     }
 
 }

@@ -8,7 +8,7 @@ import org.hy.xflow.engine.enums.RouteTypeEnum;
 
 
 /**
- * 工作流路由类型 
+ * 工作流路由类型
  *
  * @author      ZhengWei(HY)
  * @createDate  2018-04-24
@@ -23,17 +23,17 @@ public class RouteType extends BaseModel
     /** 工作流路由类型ID */
     private RouteTypeEnum routeTypeID;
     
-	/** 工作流路由类型名称 */
+    /** 工作流路由类型名称 */
     private String  routeType;
     
-	/** 备注说明 */
+    /** 备注说明 */
     private String  infoComment;
     
     /** 排列顺序 */
     private Integer orderNo;
     
-	
-	
+    
+    
     /**
      * 获取：工作流路由类型ID
      */
@@ -55,7 +55,7 @@ public class RouteType extends BaseModel
     /**
      * 设置：工作流路由类型ID
      * 
-     * @param routeTypeID 
+     * @param routeTypeID
      */
     public void setRouteTypeID(RouteTypeEnum routeTypeID)
     {
@@ -66,7 +66,7 @@ public class RouteType extends BaseModel
     /**
      * 设置：工作流路由类型名称
      * 
-     * @param routeType 
+     * @param routeType
      */
     public void setRouteType(String routeType)
     {
@@ -106,7 +106,7 @@ public class RouteType extends BaseModel
     /**
      * 设置：排列顺序
      * 
-     * @param orderNo 
+     * @param orderNo
      */
     public void setOrderNo(Integer orderNo)
     {

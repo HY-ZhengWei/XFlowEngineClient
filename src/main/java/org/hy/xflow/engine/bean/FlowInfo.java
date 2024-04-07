@@ -23,63 +23,63 @@ import org.hy.xflow.engine.common.IDHelp;
 public class FlowInfo extends BaseModel
 {
     private static final long serialVersionUID = -4724247321457107633L;
-	
+    
     
     /** 流转过程。（内存合成） */
     private List<FlowProcess> processes;
     
-	/** 工作流实例ID */
+    /** 工作流实例ID */
     private String workID;
     
-	/** 工作流的父实例ID，可为空 */
+    /** 工作流的父实例ID，可为空 */
     private String workFatherID;
     
-	/** 工作流的模板ID */
+    /** 工作流的模板ID */
     private String flowTemplateID;
     
     /** 工作流的模板版本号（数值递增型） */
     private Integer versionNo;
     
-	/** 第三方使用系统的业务数据ID。即支持用第三方ID也能找到工作流信息 */
+    /** 第三方使用系统的业务数据ID。即支持用第三方ID也能找到工作流信息 */
     private String serviceDataID;
     
-	/** 创建人员ID */
+    /** 创建人员ID */
     private String createrID;
     
-	/** 创建人员名称 */
+    /** 创建人员名称 */
     private String creater;
     
-	/** 创建部门ID */
+    /** 创建部门ID */
     private String createOrgID;
     
-	/** 创建部门名称 */
+    /** 创建部门名称 */
     private String createOrg;
     
-	/** 创建时间 */
+    /** 创建时间 */
     private Date createTime;
     
-	/** 最后修改人员ID */
+    /** 最后修改人员ID */
     private String lastUserID;
     
-	/** 最后修改人员名称 */
+    /** 最后修改人员名称 */
     private String lastUser;
     
-	/** 最后修改时间 */
+    /** 最后修改时间 */
     private Date lastTime;
     
-	/** 最后修改部门ID */
+    /** 最后修改部门ID */
     private String lastOrgID;
     
-	/** 最后修改部门名称 */
+    /** 最后修改部门名称 */
     private String lastOrg;
     
-	/** 最后修改的过程ID */
+    /** 最后修改的过程ID */
     private String lastProcessID;
     
-	/** 是否有效标记(0:无效；1:有效) */
+    /** 是否有效标记(0:无效；1:有效) */
     private Integer isValid;
     
-	/** 是否删除标记(0:未删除；1:已删除) */
+    /** 是否删除标记(0:未删除；1:已删除) */
     private Integer isDelete;
     
     /** 是否转历史(0:流转中； 1:已转历史) */
@@ -144,9 +144,9 @@ public class FlowInfo extends BaseModel
         
         return v_Ret;
     }
-	
     
-	
+    
+    
     /**
      * 获取：流转过程。（内存合成）
      */
@@ -185,9 +185,9 @@ public class FlowInfo extends BaseModel
     {
         this.workID = i_WorkID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：工作流的父实例ID，可为空
      */
     public String getWorkFatherID()
@@ -205,9 +205,9 @@ public class FlowInfo extends BaseModel
     {
         this.workFatherID = i_WorkFatherID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：工作流的模板ID
      */
     public String getFlowTemplateID()
@@ -225,9 +225,9 @@ public class FlowInfo extends BaseModel
     {
         this.flowTemplateID = i_FlowTemplateID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：第三方使用系统的业务数据ID。即支持用第三方ID也能找到工作流信息
      */
     public String getServiceDataID()
@@ -245,9 +245,9 @@ public class FlowInfo extends BaseModel
     {
         this.serviceDataID = i_ServiceDataID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：创建人员ID
      */
     public String getCreaterID()
@@ -265,9 +265,9 @@ public class FlowInfo extends BaseModel
     {
         this.createrID = i_CreaterID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：创建人员名称
      */
     public String getCreater()
@@ -285,9 +285,9 @@ public class FlowInfo extends BaseModel
     {
         this.creater = i_Creater;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：创建部门ID
      */
     public String getCreateOrgID()
@@ -305,9 +305,9 @@ public class FlowInfo extends BaseModel
     {
         this.createOrgID = i_CreateOrgID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：创建部门名称
      */
     public String getCreateOrg()
@@ -325,9 +325,9 @@ public class FlowInfo extends BaseModel
     {
         this.createOrg = i_CreateOrg;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：创建时间
      */
     public Date getCreateTime()
@@ -345,9 +345,9 @@ public class FlowInfo extends BaseModel
     {
         this.createTime = i_CreateTime;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：最后修改人员ID
      */
     public String getLastUserID()
@@ -365,9 +365,9 @@ public class FlowInfo extends BaseModel
     {
         this.lastUserID = i_LastUserID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：最后修改人员名称
      */
     public String getLastUser()
@@ -385,9 +385,9 @@ public class FlowInfo extends BaseModel
     {
         this.lastUser = i_LastUser;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：最后修改时间
      */
     public Date getLastTime()
@@ -405,9 +405,9 @@ public class FlowInfo extends BaseModel
     {
         this.lastTime = i_LastTime;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：最后修改部门ID
      */
     public String getLastOrgID()
@@ -425,9 +425,9 @@ public class FlowInfo extends BaseModel
     {
         this.lastOrgID = i_LastOrgID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：最后修改部门名称
      */
     public String getLastOrg()
@@ -445,9 +445,9 @@ public class FlowInfo extends BaseModel
     {
         this.lastOrg = i_LastOrg;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：最后修改的过程ID
      */
     public String getLastProcessID()
@@ -465,9 +465,9 @@ public class FlowInfo extends BaseModel
     {
         this.lastProcessID = i_LastProcessID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：是否有效标记(0:无效；1:有效)
      */
     public Integer getIsValid()
@@ -485,9 +485,9 @@ public class FlowInfo extends BaseModel
     {
         this.isValid = i_IsValid;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：是否删除标记(0:未删除；1:已删除)
      */
     public Integer getIsDelete()
@@ -530,20 +530,20 @@ public class FlowInfo extends BaseModel
     /**
      * 获取：工作流的模板版本号（数值递增型）
      */
-	public Integer getVersionNo() 
-	{
-		return versionNo;
-	}
+    public Integer getVersionNo()
+    {
+        return versionNo;
+    }
 
 
-	/**
+    /**
      * 设置：工作流的模板版本号（数值递增型）
      * 
      * @param i_VersionNo 工作流的模板版本号（数值递增型）
      */
-	public void setVersionNo(Integer i_VersionNo) 
-	{
-		this.versionNo = i_VersionNo;
-	}
+    public void setVersionNo(Integer i_VersionNo)
+    {
+        this.versionNo = i_VersionNo;
+    }
 
 }

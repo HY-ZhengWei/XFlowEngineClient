@@ -25,9 +25,9 @@ import org.hy.xflow.engine.enums.RouteTypeEnum;
 public class ActivityRoute extends BaseModel
 {
     private static final long serialVersionUID = -4724247321457107633L;
-	
     
-	/** 主键ID */
+    
+    /** 主键ID */
     private String activityRouteID;
     
     /** 活动路由Code。作为与外界交互的编码。同一版本的工作流下是惟一的，不同版本的同类工作流可以相同。 */
@@ -58,7 +58,7 @@ public class ActivityRoute extends BaseModel
      */
     private Map<String ,Participant> participantByActivitys;
     
-	/** 工作流活动ID */
+    /** 工作流活动ID */
     private String activityID;
     
     /** 工作流活动编码 */
@@ -67,7 +67,7 @@ public class ActivityRoute extends BaseModel
     /** 路由A-B两端，从A到B的A端活动（内存合成） */
     private ActivityInfo activity;
     
-	/** 下一活动ID。可以为不同工作流模板的活动。即支持子流程 */
+    /** 下一活动ID。可以为不同工作流模板的活动。即支持子流程 */
     private String nextActivityID;
     
     /** 下一活动编码 */
@@ -76,16 +76,16 @@ public class ActivityRoute extends BaseModel
     /** 下一活动（内存合成） */
     private ActivityInfo nextActivity;
     
-	/** 有条件判定时，执行的XJava对象ID */
+    /** 有条件判定时，执行的XJava对象ID */
     private String  conditionXJavaID;
     
-	/** 有条件判定时，执行的对象方法名称 */
+    /** 有条件判定时，执行的对象方法名称 */
     private String  conditionMethod;
     
-	/** 有条件判定时，方法执行结果的对比值 */
+    /** 有条件判定时，方法执行结果的对比值 */
     private String  conditionValue;
     
-	/** 有条件判定时，对比值的数据类型（1:数字；2:布尔值；3:文本） */
+    /** 有条件判定时，对比值的数据类型（1:数字；2:布尔值；3:文本） */
     private Integer conditionVType;
     
     /** 路由连接线的颜色 */
@@ -94,31 +94,31 @@ public class ActivityRoute extends BaseModel
     /** 路由连接线的文字颜色 */
     private String  fontColor;
     
-	/** 备注说明 */
+    /** 备注说明 */
     private String  infoComment;
     
-	/** 创建人员ID */
+    /** 创建人员ID */
     private String  createrID;
     
-	/** 创建人员名称 */
+    /** 创建人员名称 */
     private String  creater;
     
-	/** 创建时间 */
+    /** 创建时间 */
     private Date    createTime;
     
-	/** 最后修改人员ID */
+    /** 最后修改人员ID */
     private String  lastUserID;
     
-	/** 最后修改人员名称 */
+    /** 最后修改人员名称 */
     private String  lastUser;
     
-	/** 最后修改时间 */
+    /** 最后修改时间 */
     private Date    lastTime;
     
     /** 权重。权重值越大，优先级越高 */
     private Integer weight;
     
-	
+    
     
     /**
      * 判定用户信息是否当前活动路由的参与人之一
@@ -216,7 +216,7 @@ public class ActivityRoute extends BaseModel
     }
     
     
-	
+    
     /**
      * 获取：路由A-B两端，从A到B的A端活动（内存合成）
      */
@@ -335,8 +335,8 @@ public class ActivityRoute extends BaseModel
     {
         this.activityID = i_ActivityID;
     }
-	
-	
+    
+    
     /**
      * 获取：工作流活动编码
      */
@@ -375,8 +375,8 @@ public class ActivityRoute extends BaseModel
     {
         this.templateID = i_TemplateID;
     }
-	
-	
+    
+    
     /**
      * 获取：工作流路由类型ID
      */
@@ -501,8 +501,8 @@ public class ActivityRoute extends BaseModel
     {
         this.nextActivityID = i_NextActivityID;
     }
-	
-	
+    
+    
     /**
      * 获取：下一活动编码
      */
@@ -541,9 +541,9 @@ public class ActivityRoute extends BaseModel
     {
         this.conditionXJavaID = i_ConditionXJavaID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：有条件判定时，执行的对象方法名称
      */
     public String getConditionMethod()
@@ -561,9 +561,9 @@ public class ActivityRoute extends BaseModel
     {
         this.conditionMethod = i_ConditionMethod;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：有条件判定时，方法执行结果的对比值
      */
     public String getConditionValue()
@@ -581,9 +581,9 @@ public class ActivityRoute extends BaseModel
     {
         this.conditionValue = i_ConditionValue;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：有条件判定时，对比值的数据类型（1:数字；2:布尔值；3:文本）
      */
     public Integer getConditionVType()
@@ -601,8 +601,8 @@ public class ActivityRoute extends BaseModel
     {
         this.conditionVType = i_ConditionVType;
     }
-	
-	
+    
+    
     /**
      * 获取：路由连接线的颜色
      */
@@ -641,9 +641,9 @@ public class ActivityRoute extends BaseModel
     {
         this.infoComment = i_InfoComment;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：创建人员ID
      */
     public String getCreaterID()
@@ -661,9 +661,9 @@ public class ActivityRoute extends BaseModel
     {
         this.createrID = i_CreaterID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：创建人员名称
      */
     public String getCreater()
@@ -681,9 +681,9 @@ public class ActivityRoute extends BaseModel
     {
         this.creater = i_Creater;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：创建时间
      */
     public Date getCreateTime()
@@ -701,9 +701,9 @@ public class ActivityRoute extends BaseModel
     {
         this.createTime = i_CreateTime;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：最后修改人员ID
      */
     public String getLastUserID()
@@ -721,9 +721,9 @@ public class ActivityRoute extends BaseModel
     {
         this.lastUserID = i_LastUserID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：最后修改人员名称
      */
     public String getLastUser()
@@ -741,9 +741,9 @@ public class ActivityRoute extends BaseModel
     {
         this.lastUser = i_LastUser;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：最后修改时间
      */
     public Date getLastTime()

@@ -17,52 +17,52 @@ import org.hy.xflow.engine.common.BaseModel;
 public class Template extends BaseModel
 {
     private static final long serialVersionUID = -4724247321457107633L;
-	
+    
     
     /** 活动路由树 */
     private ActivityRouteTree activityRouteTree;
     
-	/** 模板ID */
+    /** 模板ID */
     private String templateID;
     
     /** 模板版本号（数值递增型） */
     private Integer versionNo;
     
-	/** 模板版本号 */
+    /** 模板版本号 */
     private String version;
     
-	/** 模板名称 */
+    /** 模板名称 */
     private String templateName;
     
-	/** 备注说明 */
+    /** 备注说明 */
     private String infoComment;
     
-	/** 创建人员ID */
+    /** 创建人员ID */
     private String createrID;
     
-	/** 创建人员名称 */
+    /** 创建人员名称 */
     private String creater;
     
-	/** 创建时间 */
+    /** 创建时间 */
     private Date createTime;
     
-	/** 最后修改人员ID */
+    /** 最后修改人员ID */
     private String lastUserID;
     
-	/** 最后修改人员名称 */
+    /** 最后修改人员名称 */
     private String lastUser;
     
-	/** 最后修改时间 */
+    /** 最后修改时间 */
     private Date lastTime;
     
-	/** 是否有效标记(0:无效；1:有效) */
+    /** 是否有效标记(0:无效；1:有效) */
     private Integer isValid;
     
-	/** 是否删除标记(0:未删除；1:已删除) */
+    /** 是否删除标记(0:未删除；1:已删除) */
     private Integer isDelete;
     
-	
-	
+    
+    
     /**
      * 获取：活动路由树
      */
@@ -75,7 +75,7 @@ public class Template extends BaseModel
     /**
      * 设置：活动路由树
      * 
-     * @param activityRouteTree 
+     * @param activityRouteTree
      */
     public void setActivityRouteTree(ActivityRouteTree activityRouteTree)
     {
@@ -101,8 +101,8 @@ public class Template extends BaseModel
     {
         this.templateID = i_TemplateID;
     }
-	
-	
+    
+    
     /**
      * 获取：模板版本号（数值递增型）
      */
@@ -115,7 +115,7 @@ public class Template extends BaseModel
     /**
      * 设置：模板版本号（数值递增型）
      * 
-     * @param versionNo 
+     * @param versionNo
      */
     public void setVersionNo(Integer versionNo)
     {
@@ -141,9 +141,9 @@ public class Template extends BaseModel
     {
         this.version = i_Version;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：模板名称
      */
     public String getTemplateName()
@@ -161,9 +161,9 @@ public class Template extends BaseModel
     {
         this.templateName = i_TemplateName;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：备注说明
      */
     public String getInfoComment()
@@ -181,9 +181,9 @@ public class Template extends BaseModel
     {
         this.infoComment = i_InfoComment;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：创建人员ID
      */
     public String getCreaterID()
@@ -201,9 +201,9 @@ public class Template extends BaseModel
     {
         this.createrID = i_CreaterID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：创建人员名称
      */
     public String getCreater()
@@ -221,9 +221,9 @@ public class Template extends BaseModel
     {
         this.creater = i_Creater;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：创建时间
      */
     public Date getCreateTime()
@@ -241,9 +241,9 @@ public class Template extends BaseModel
     {
         this.createTime = i_CreateTime;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：最后修改人员ID
      */
     public String getLastUserID()
@@ -261,9 +261,9 @@ public class Template extends BaseModel
     {
         this.lastUserID = i_LastUserID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：最后修改人员名称
      */
     public String getLastUser()
@@ -281,9 +281,9 @@ public class Template extends BaseModel
     {
         this.lastUser = i_LastUser;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：最后修改时间
      */
     public Date getLastTime()
@@ -301,9 +301,9 @@ public class Template extends BaseModel
     {
         this.lastTime = i_LastTime;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：是否有效标记(0:无效；1:有效)
      */
     public Integer getIsValid()
@@ -321,9 +321,9 @@ public class Template extends BaseModel
     {
         this.isValid = i_IsValid;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：是否删除标记(0:未删除；1:已删除)
      */
     public Integer getIsDelete()

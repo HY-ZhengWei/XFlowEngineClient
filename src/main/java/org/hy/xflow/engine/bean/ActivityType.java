@@ -8,7 +8,7 @@ import org.hy.xflow.engine.enums.ActivityTypeEnum;
 
 
 /**
- * 工作流活动(节点)类型 
+ * 工作流活动(节点)类型
  *
  * @author      ZhengWei(HY)
  * @createDate  2018-04-17
@@ -17,23 +17,23 @@ import org.hy.xflow.engine.enums.ActivityTypeEnum;
 public class ActivityType extends BaseModel
 {
     private static final long serialVersionUID = -4724247321457107633L;
-	
     
-	/** 工作流活动类型ID */
+    
+    /** 工作流活动类型ID */
     private ActivityTypeEnum activityTypeID;
     
-	/** 工作流活动类型名称 */
+    /** 工作流活动类型名称 */
     private String           activityType;
     
-	/** 备注说明 */
+    /** 备注说明 */
     private String           infoComment;
     
     /** 排列顺序 */
     private Integer          orderNo;
     
-	
-	
-	/**
+    
+    
+    /**
      * 获取：工作流活动类型ID
      */
     public ActivityTypeEnum getActivityTypeID()
@@ -51,9 +51,9 @@ public class ActivityType extends BaseModel
     {
         this.activityTypeID = i_ActivityTypeID;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：工作流活动类型名称
      */
     public String getActivityType()
@@ -71,9 +71,9 @@ public class ActivityType extends BaseModel
     {
         this.activityType = i_ActivityType;
     }
-	
-	
-	/**
+    
+    
+    /**
      * 获取：备注说明
      */
     public String getInfoComment()
@@ -105,7 +105,7 @@ public class ActivityType extends BaseModel
     /**
      * 设置：排列顺序
      * 
-     * @param orderNo 
+     * @param orderNo
      */
     public void setOrderNo(Integer orderNo)
     {

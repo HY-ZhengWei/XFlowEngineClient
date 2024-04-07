@@ -25,52 +25,55 @@ public class FlowData extends BaseModel
     
     
     /** 用户信息 */
-    private User                  user;
+    private User                       user;
     
     /** 工作流模板名称 */
-    private String                templateName;
+    private String                     templateName;
     
     /** 模板版本号 */
-    private Integer               versionNo;
+    private Integer                    versionNo;
     
     /** 第三方使用系统的业务数据ID。即支持用第三方ID也能找到工作流信息 */
-    private String                serviceDataID;
+    private String                     serviceDataID;
     
     /** 工作流实例ID */
-    private String                workID;
+    private String                     workID;
     
     /** 单路流转：路由编码 */
-    private String                activityRouteCode;
+    private String                     activityRouteCode;
     
     /** 单路驳回：活动节点的编码 */
-    private String                activityCode;
+    private String                     activityCode;
     
     /** 单路流转&驳回：指定下一活动的动态参与人 */
-    private List<UserParticipant> participants;
+    private List<UserParticipant>      participants;
     
     /** 多路并发的流转信息 */
-    List<FlowDataRoute>           routes;
+    List<FlowDataRoute>                routes;
     
     /** 多路并发的自由驳回的流转信息（未在工作流模板上预先配置驳回路由） */
-    List<FlowDataActivity>        activitys;
+    List<FlowDataActivity>             activitys;
     
     /** 驳回模式。auto:自动模式；team：协同模式 */
-    RejectModeEnum                rejectMode;
+    RejectModeEnum                     rejectMode;
     
     /** 汇总值 */
-    private Double                summary;
+    private Double                     summary;
     
     /** 提交汇总的总人数 */
-    private Integer               counter;
+    private Integer                    counter;
     
     /** 操作文件信息，由第三方使用者定义其内容（拓展性数据） */
-    private String                operateFiles;
+    private String                     operateFiles;
     
     /** 操作数据信息，由第三方使用者定义其内容（拓展性数据） */
-    private String                operateDatas;
+    private String                     operateDatas;
     
     /** 备注说明 */
-    private String                infoComment;
+    private String                     infoComment;
+    
+    /** 汇签 */
+    private ProcessCounterSignatureLog counterSignature;
     
     
     
@@ -412,7 +415,7 @@ public class FlowData extends BaseModel
         return rejectMode;
     }
 
-
+    
     
     /**
      * 设置：驳回模式。auto:自动模式；team：协同模式
@@ -422,6 +425,28 @@ public class FlowData extends BaseModel
     public void setRejectMode(RejectModeEnum i_RejectMode)
     {
         this.rejectMode = i_RejectMode;
+    }
+
+
+    
+    /**
+     * 获取：汇签
+     */
+    public ProcessCounterSignatureLog getCounterSignature()
+    {
+        return counterSignature;
+    }
+
+
+    
+    /**
+     * 设置：汇签
+     * 
+     * @param i_CounterSignature 汇签
+     */
+    public void setCounterSignature(ProcessCounterSignatureLog i_CounterSignature)
+    {
+        this.counterSignature = i_CounterSignature;
     }
     
 }

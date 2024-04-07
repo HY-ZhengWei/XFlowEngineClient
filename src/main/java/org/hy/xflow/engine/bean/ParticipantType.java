@@ -7,7 +7,7 @@ import org.hy.xflow.engine.common.BaseModel;
 
 
 /**
- * 参与人类型 
+ * 参与人类型
  *
  * @author      ZhengWei(HY)
  * @createDate  2018-04-24
@@ -22,16 +22,16 @@ public class ParticipantType extends BaseModel
     /** 参与人类型ID */
     private String  participantTypeID;
     
-	/** 参与人类型名称 */
+    /** 参与人类型名称 */
     private String  participantType;
     
-	/** 备注说明 */
+    /** 备注说明 */
     private String  infoComment;
     
     /** 排列顺序 */
     private Integer orderNo;
     
-	
+    
     
     /**
      * 获取：参与人类型ID
@@ -54,7 +54,7 @@ public class ParticipantType extends BaseModel
     /**
      * 设置：参与人类型ID
      * 
-     * @param participantTypeID 
+     * @param participantTypeID
      */
     public void setParticipantTypeID(String participantTypeID)
     {
@@ -65,7 +65,7 @@ public class ParticipantType extends BaseModel
     /**
      * 设置：参与人类型名称
      * 
-     * @param participantType 
+     * @param participantType
      */
     public void setParticipantType(String participantType)
     {
@@ -105,7 +105,7 @@ public class ParticipantType extends BaseModel
     /**
      * 设置：排列顺序
      * 
-     * @param orderNo 
+     * @param orderNo
      */
     public void setOrderNo(Integer orderNo)
     {
