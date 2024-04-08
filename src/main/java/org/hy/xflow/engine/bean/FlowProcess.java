@@ -118,6 +118,9 @@ public class FlowProcess extends BaseModel
     /** 汇总是否通过（0：未通过；1：通过） */
     private Integer                    isPass;
     
+    /** 是否汇签（0：普通；1：汇签） */
+    private Integer                    isCS;
+    
     /** 限制操作人员ID */
     private String                     limitUserID;
     
@@ -210,6 +213,7 @@ public class FlowProcess extends BaseModel
         this.counterPass           = 0;
         this.passType              = "";
         this.isPass                = 0;
+        this.isCS                  = 0;
         
         return this;
     }
@@ -277,6 +281,7 @@ public class FlowProcess extends BaseModel
         this.counterPass             = 0;
         this.passType                = "";
         this.isPass                  = 0;
+        this.isCS                    = 0;
         
         return this;
     }
@@ -357,6 +362,7 @@ public class FlowProcess extends BaseModel
         this.counterPass             = 0;
         this.passType                = "";
         this.isPass                  = 0;
+        this.isCS                    = 0;
         
         return this;
     }
@@ -1342,6 +1348,26 @@ public class FlowProcess extends BaseModel
     public void setCounterSignature(ProcessCounterSignatureLog i_CounterSignature)
     {
         this.counterSignature = i_CounterSignature;
+    }
+
+    
+    /**
+     * 获取：是否汇签（0：普通；1：汇签）
+     */
+    public Integer getIsCS()
+    {
+        return isCS;
+    }
+
+    
+    /**
+     * 设置：是否汇签（0：普通；1：汇签）
+     * 
+     * @param i_IsCS 是否汇签（0：普通；1：汇签）
+     */
+    public void setIsCS(Integer i_IsCS)
+    {
+        this.isCS = i_IsCS;
     }
 
 }
