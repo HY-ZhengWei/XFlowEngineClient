@@ -1,5 +1,7 @@
 package org.hy.xflow.engine.bean;
 
+import java.util.List;
+
 import org.hy.common.Date;
 import org.hy.xflow.engine.common.BaseModel;
 
@@ -22,46 +24,149 @@ public class ProcessCounterSignature extends BaseModel
     
     
     /** 主键ID */
-    private String                     pcsID;
+    private String                           pcsID;
     
     /** 工作流的过程ID */
-    private String                     processID;
+    private String                           processID;
     
     /** 工作流实例ID */
-    private String                     workID;
+    private String                           workID;
     
     /** 第三方使用系统的业务数据ID。即支持用第三方ID也能找到工作流信息 */
-    private String                     serviceDataID;
+    private String                           serviceDataID;
     
     /** 创建人员ID */
-    private String                     createrID;
+    private String                           createrID;
     
     /** 创建人员名称 */
-    private String                     creater;
+    private String                           creater;
     
     /** 创建部门ID */
-    private String                     createOrgID;
+    private String                           createOrgID;
     
     /** 创建部门名称 */
-    private String                     createOrg;
+    private String                           createOrg;
     
     /** 创建时间 */
-    private Date                       createTime;
+    private Date                             createTime;
     
     /** 应当汇签人数 */
-    private Integer                    csMaxUserCount;
+    private Integer                          csMaxUserCount;
     
     /** 最小汇签人数 */
-    private Integer                    csMinUserCount;
+    private Integer                          csMinUserCount;
     
     /** 汇签过期时间 */
-    private Date                       csExpireTime;
+    private Date                             csExpireTime;
+    
+    /** 已经汇签人数（内存合成） */
+    private Integer                          csUserCount;
+    
+    /** 最后汇签时间（内存合成） */
+    private Date                             csLastTime;
+    
+    /** 汇签完成（不设立字段保存数据库中） */
+    private Integer                          csFinish;
+    
+    /** 汇签完成时间 */
+    private Date                             csFinishTime;
     
     /** 汇签日志 */
-    private ProcessCounterSignatureLog logs;
+    private List<ProcessCounterSignatureLog> logs;
 
     
     
+    /**
+     * 获取：已经汇签人数（内存合成）
+     */
+    public Integer getCsUserCount()
+    {
+        if ( this.logs == null && this.csUserCount == null )
+        {
+            return 0;
+        }
+        else if ( this.logs != null )
+        {
+            return this.logs.size();
+        }
+        else
+        {
+            return this.csUserCount;
+        }
+    }
+
+    
+    /**
+     * 设置：已经汇签人数（内存合成）
+     * 
+     * @param i_CsUserCount 已经汇签人数（内存合成）
+     */
+    public void setCsUserCount(Integer i_CsUserCount)
+    {
+        this.csUserCount = i_CsUserCount;
+    }
+    
+    
+    /**
+     * 获取：最后汇签时间（内存合成）
+     */
+    public Date getCsLastTime()
+    {
+        return csLastTime;
+    }
+
+    
+    /**
+     * 设置：最后汇签时间（内存合成）
+     * 
+     * @param i_CsLastTime 最后汇签时间（内存合成）
+     */
+    public void setCsLastTime(Date i_CsLastTime)
+    {
+        this.csLastTime = i_CsLastTime;
+    }
+
+
+    /**
+     * 获取：汇签结束（不设立字段保存数据库中）
+     */
+    public Integer getCsFinish()
+    {
+        return csFinish;
+    }
+
+    
+    /**
+     * 设置：汇签结束（不设立字段保存数据库中）
+     * 
+     * @param i_CsFinish 汇签结束（不设立字段保存数据库中）
+     */
+    public void setCsFinish(Integer i_CsFinish)
+    {
+        this.csFinish = i_CsFinish;
+    }
+
+    
+    /**
+     * 获取：汇签完成时间
+     */
+    public Date getCsFinishTime()
+    {
+        return csFinishTime;
+    }
+
+    
+    /**
+     * 设置：汇签完成时间
+     * 
+     * @param i_CsFinishTime 汇签完成时间
+     */
+    public void setCsFinishTime(Date i_CsFinishTime)
+    {
+        this.csFinishTime = i_CsFinishTime;
+    }
+
+
     /**
      * 获取：主键ID
      */
@@ -305,7 +410,7 @@ public class ProcessCounterSignature extends BaseModel
     /**
      * 获取：汇签日志
      */
-    public ProcessCounterSignatureLog getLogs()
+    public List<ProcessCounterSignatureLog> getLogs()
     {
         return logs;
     }
@@ -316,7 +421,7 @@ public class ProcessCounterSignature extends BaseModel
      * 
      * @param i_Logs 汇签日志
      */
-    public void setLogs(ProcessCounterSignatureLog i_Logs)
+    public void setLogs(List<ProcessCounterSignatureLog> i_Logs)
     {
         this.logs = i_Logs;
     }
