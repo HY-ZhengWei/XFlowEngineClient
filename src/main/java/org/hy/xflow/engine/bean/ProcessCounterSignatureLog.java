@@ -7,7 +7,7 @@ import org.hy.common.Date;
 
 
 /**
- * 工作流实例流转过程中的汇签日志
+ * 工作流实例流转过程中的汇签记录
  *
  * @author      ZhengWei(HY)
  * @createDate  2024-04-03

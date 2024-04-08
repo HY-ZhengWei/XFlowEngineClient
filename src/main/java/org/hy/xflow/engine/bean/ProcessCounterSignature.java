@@ -8,7 +8,7 @@ import org.hy.xflow.engine.common.BaseModel;
 
 
 /**
- * 工作流实例流转过程中的汇签信息
+ * 工作流实例流转过程中的汇签要求
  *
  * @author      ZhengWei(HY)
  * @createDate  2024-04-03
