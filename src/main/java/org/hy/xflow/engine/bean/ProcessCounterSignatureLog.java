@@ -32,6 +32,9 @@ public class ProcessCounterSignatureLog extends ProcessCounterSignature
     /** 汇签类型名称，由第三方使用者定义其内容（拓展性数据） */
     private String  csType;
     
+    /** 汇签类型的统计数量（算法合成） */
+    private Integer csTypeCount;
+    
     /** 汇签人员ID */
     private String  csUserID;
     
@@ -52,6 +55,9 @@ public class ProcessCounterSignatureLog extends ProcessCounterSignature
     
     /** 汇签说明 */
     private String  csComment;
+    
+    /** 是否保留待办权限 */
+    private Integer csRetain;
 
 
     
@@ -133,8 +139,28 @@ public class ProcessCounterSignatureLog extends ProcessCounterSignature
     {
         this.csType = i_CsType;
     }
+    
+    
+    /**
+     * 获取：汇签类型的统计数量（算法合成）
+     */
+    public Integer getCsTypeCount()
+    {
+        return csTypeCount;
+    }
 
     
+    /**
+     * 设置：汇签类型的统计数量（算法合成）
+     * 
+     * @param i_CsTypeCount 汇签类型的统计数量（算法合成）
+     */
+    public void setCsTypeCount(Integer i_CsTypeCount)
+    {
+        this.csTypeCount = i_CsTypeCount;
+    }
+
+
     /**
      * 获取：汇签人员ID
      */
@@ -272,6 +298,26 @@ public class ProcessCounterSignatureLog extends ProcessCounterSignature
     public void setCsComment(String i_CsComment)
     {
         this.csComment = i_CsComment;
+    }
+
+    
+    /**
+     * 获取：是否保留待办权限
+     */
+    public Integer getCsRetain()
+    {
+        return csRetain;
+    }
+
+    
+    /**
+     * 设置：是否保留待办权限
+     * 
+     * @param i_CsRetain 是否保留待办权限
+     */
+    public void setCsRetain(Integer i_CsRetain)
+    {
+        this.csRetain = i_CsRetain;
     }
     
 }

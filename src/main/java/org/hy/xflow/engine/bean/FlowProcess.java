@@ -19,6 +19,7 @@ import org.hy.xflow.engine.enums.RouteTypeEnum;
  * @author      ZhengWei(HY)
  * @createDate  2018-04-17
  * @version     v1.0
+ *              v2.0  2024-04-09  添加：排除执行人、排除抄送人
  */
 public class FlowProcess extends BaseModel
 {
@@ -375,6 +376,7 @@ public class FlowProcess extends BaseModel
      * @author      ZhengWei(HY)
      * @createDate  2018-05-09
      * @version     v1.0
+     *              v2.0  2024-04-09  添加：排除执行人、排除抄送人
      *
      * @param i_User
      * @return
@@ -392,8 +394,16 @@ public class FlowProcess extends BaseModel
         
         for (Participant v_Participant : this.participants)
         {
-            if ( ParticipantTypeEnum.$User     == v_Participant.getObjectType()
-              || ParticipantTypeEnum.$UserSend == v_Participant.getObjectType() )
+            if ( ParticipantTypeEnum.$ExcludeUser     == v_Participant.getObjectType()
+              || ParticipantTypeEnum.$ExcludeUserSend == v_Participant.getObjectType() )
+            {
+                if ( v_Participant.getObjectID().equals(i_User.getUserID()) )
+                {
+                    return null;
+                }
+            }
+            else if ( ParticipantTypeEnum.$User     == v_Participant.getObjectType()
+                   || ParticipantTypeEnum.$UserSend == v_Participant.getObjectType() )
             {
                 if ( v_Participant.getObjectID().equals(i_User.getUserID()) )
                 {
