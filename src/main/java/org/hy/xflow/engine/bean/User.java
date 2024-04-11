@@ -23,18 +23,25 @@ public class User extends BaseModel
     
     private static final long serialVersionUID = 2225865648787794780L;
     
-
+    /** 系统用户的部门ID */
+    public static final String $SYS_OrgID           = "$XFlow$";
+    
+    /** 系统用户：汇签过期检查向下流转的用户ID */
+    public static final String $SYS_UserID_CSExpire = "$CSExpire$";
+    
+    
+    
     /** 用户ID */
-    private String userID;
+    private String         userID;
     
     /** 用户名称 */
-    private String userName;
+    private String         userName;
     
     /** 部门ID */
-    private String orgID;
+    private String         orgID;
     
     /** 部门名称 */
-    private String orgName;
+    private String         orgName;
     
     /** 用户角色。支持多角色功能 */
     private List<UserRole> roles;
