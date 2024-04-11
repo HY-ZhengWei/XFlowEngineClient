@@ -126,6 +126,7 @@ public class ActivityRoute extends BaseModel
      * @author      ZhengWei(HY)
      * @createDate  2018-04-25
      * @version     v1.0
+     *              v2.0  2024-04-11  添加：排除执行人、排除抄送人
      *
      * @param i_User
      * @return
@@ -143,8 +144,16 @@ public class ActivityRoute extends BaseModel
         
         for (Participant v_Participant : this.participants)
         {
-            if ( ParticipantTypeEnum.$User     == v_Participant.getObjectType()
-              || ParticipantTypeEnum.$UserSend == v_Participant.getObjectType() )
+            if ( ParticipantTypeEnum.$ExcludeUser     == v_Participant.getObjectType()
+              || ParticipantTypeEnum.$ExcludeUserSend == v_Participant.getObjectType() )
+            {
+                if ( v_Participant.getObjectID().equals(i_User.getUserID()) )
+                {
+                    return null;
+                }
+            }
+            else if ( ParticipantTypeEnum.$User     == v_Participant.getObjectType()
+                   || ParticipantTypeEnum.$UserSend == v_Participant.getObjectType() )
             {
                 if ( v_Participant.getObjectID().equals(i_User.getUserID()) )
                 {
@@ -164,7 +173,7 @@ public class ActivityRoute extends BaseModel
             {
                 if ( Help.isNull(i_User.getRoles()) )
                 {
-                    return null;
+                    continue;
                 }
                 
                 for (UserRole v_Role : i_User.getRoles())

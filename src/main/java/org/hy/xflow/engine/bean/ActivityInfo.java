@@ -33,7 +33,7 @@ public class ActivityInfo extends BaseModel
     /** 本活动组件（节点）的参与人，是否为流程发起人。（内存合成） */
     private Participant participantByCreater;
     
-    /** 
+    /**
      * 本活动组件（节点）的参与人，是否为另一个活动的实际操作人。（内存合成）
      * 
      * Map.key为Participant.objectID，即另一个活动的ActivityID
@@ -168,6 +168,7 @@ public class ActivityInfo extends BaseModel
      * @author      ZhengWei(HY)
      * @createDate  2018-04-25
      * @version     v1.0
+     *              v2.0  2024-04-11  添加：排除执行人、排除抄送人
      *
      * @param i_User
      * @return
@@ -185,21 +186,12 @@ public class ActivityInfo extends BaseModel
         
         for (Participant v_Participant : this.participants)
         {
-            
-            if ( ParticipantTypeEnum.$Role     == v_Participant.getObjectType()
-              || ParticipantTypeEnum.$RoleSend == v_Participant.getObjectType() )
+            if ( ParticipantTypeEnum.$ExcludeUser     == v_Participant.getObjectType()
+              || ParticipantTypeEnum.$ExcludeUserSend == v_Participant.getObjectType() )
             {
-                if ( Help.isNull(i_User.getRoles()) )
+                if ( v_Participant.getObjectID().equals(i_User.getUserID()) )
                 {
                     return null;
-                }
-                
-                for (UserRole v_Role : i_User.getRoles())
-                {
-                    if ( v_Participant.getObjectID().equals(v_Role.getRoleID()) )
-                    {
-                        return v_Participant;
-                    }
                 }
             }
             else if ( ParticipantTypeEnum.$User     == v_Participant.getObjectType()
@@ -216,7 +208,23 @@ public class ActivityInfo extends BaseModel
                 if ( v_Participant.getObjectID().equals(i_User.getOrgID()) )
                 {
                     return v_Participant;
-                } 
+                }
+            }
+            else if ( ParticipantTypeEnum.$Role     == v_Participant.getObjectType()
+                   || ParticipantTypeEnum.$RoleSend == v_Participant.getObjectType() )
+            {
+                if ( Help.isNull(i_User.getRoles()) )
+                {
+                    continue;
+                }
+                
+                for (UserRole v_Role : i_User.getRoles())
+                {
+                    if ( v_Participant.getObjectID().equals(v_Role.getRoleID()) )
+                    {
+                        return v_Participant;
+                    }
+                }
             }
         }
         
@@ -272,7 +280,7 @@ public class ActivityInfo extends BaseModel
     /**
      * 设置：本活动组件（节点）的参与人。谁从此路过。（内存合成）
      * 
-     * @param participants 
+     * @param participants
      */
     public void setParticipants(List<Participant> participants)
     {
@@ -294,7 +302,7 @@ public class ActivityInfo extends BaseModel
     /**
      * 设置：本活动组件（节点）的参与人，是否为流程发起人。（内存合成）
      * 
-     * @param participantByCreater 
+     * @param participantByCreater
      */
     public void setParticipantByCreater(Participant participantByCreater)
     {
@@ -318,7 +326,7 @@ public class ActivityInfo extends BaseModel
      * 
      * Map.key为Participant.objectID，即另一个活动的ActivityID
      * 
-     * @param participantByActivitys 
+     * @param participantByActivitys
      */
     public void setParticipantByActivitys(Map<String ,Participant> participantByActivitys)
     {
@@ -338,7 +346,7 @@ public class ActivityInfo extends BaseModel
     /**
      * 设置：本活动组件（节点）的所有通过路由信息（内存合成）
      * 
-     * @param routes 
+     * @param routes
      */
     public void setRoutes(List<ActivityRoute> routes)
     {
@@ -378,7 +386,7 @@ public class ActivityInfo extends BaseModel
     /**
      * 设置：工作流活动Code。作为与外界交互的编码。同一版本的工作流下是惟一的，不同版本的同类工作流可以相同。
      * 
-     * @param activityCode 
+     * @param activityCode
      */
     public void setActivityCode(String activityCode)
     {
@@ -458,7 +466,7 @@ public class ActivityInfo extends BaseModel
     /**
      * 设置：活动类型（内存合成）
      * 
-     * @param activityType 
+     * @param activityType
      */
     public void setActivityType(ActivityType activityType)
     {
@@ -738,7 +746,7 @@ public class ActivityInfo extends BaseModel
     /**
      * 设置：活动节点的背景色
      * 
-     * @param backgroudColor 
+     * @param backgroudColor
      */
     public void setBackgroudColor(String backgroudColor)
     {
@@ -758,7 +766,7 @@ public class ActivityInfo extends BaseModel
     /**
      * 设置：活动节点的边框线颜色
      * 
-     * @param lineColor 
+     * @param lineColor
      */
     public void setLineColor(String lineColor)
     {
@@ -778,7 +786,7 @@ public class ActivityInfo extends BaseModel
     /**
      * 设置：活动节点的标记块颜色
      * 
-     * @param flagColor 
+     * @param flagColor
      */
     public void setFlagColor(String flagColor)
     {
@@ -798,7 +806,7 @@ public class ActivityInfo extends BaseModel
     /**
      * 设置：活动节点的文字颜色
      * 
-     * @param fontColor 
+     * @param fontColor
      */
     public void setFontColor(String fontColor)
     {
@@ -818,7 +826,7 @@ public class ActivityInfo extends BaseModel
     /**
      * 设置：汇总通过值。当大于等于此值后，才能继续向下流转
      * 
-     * @param summaryPass 
+     * @param summaryPass
      */
     public void setSummaryPass(Double summaryPass)
     {
@@ -847,7 +855,7 @@ public class ActivityInfo extends BaseModel
     /**
      * 设置：汇总人数的限制。当大于等于此值后，才能继续向下流转
      * 
-     * @param counterPass 
+     * @param counterPass
      */
     public void setCounterPass(Integer counterPass)
     {
@@ -858,7 +866,7 @@ public class ActivityInfo extends BaseModel
     /**
      * 设置：汇总类型。指summaryPass和counterPass的关系是与，还是或
      * 
-     * @param passType 
+     * @param passType
      */
     public void setPassType(String passType)
     {
@@ -896,7 +904,7 @@ public class ActivityInfo extends BaseModel
     /**
      * 设置：配置页面的路径，可由终端用户决定配置页面的展示样子。用于配置阶段，并非实例流转。
      * 
-     * @param configPageURL 
+     * @param configPageURL
      */
     public void setConfigPageURL(String configPageURL)
     {
@@ -907,7 +915,7 @@ public class ActivityInfo extends BaseModel
     /**
      * 设置：配置页面的数据。将保存配置页面中的数据到工作流系统中，当再次打开配置时，通过POST请求传递参数的方式给配置页面。
      * 
-     * @param configPageDatas 
+     * @param configPageDatas
      */
     public void setConfigPageDatas(String configPageDatas)
     {
@@ -918,7 +926,7 @@ public class ActivityInfo extends BaseModel
     /**
      * 设置：规则引擎的配置代码
      * 
-     * @param xrouteConfig 
+     * @param xrouteConfig
      */
     public void setXrouteConfig(String xrouteConfig)
     {

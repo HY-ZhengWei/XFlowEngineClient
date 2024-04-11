@@ -423,7 +423,7 @@ public class FlowProcess extends BaseModel
             {
                 if ( Help.isNull(i_User.getRoles()) )
                 {
-                    return null;
+                    continue;
                 }
                 
                 for (UserRole v_Role : i_User.getRoles())
