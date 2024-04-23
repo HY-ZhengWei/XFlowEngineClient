@@ -21,6 +21,7 @@ import org.hy.xflow.engine.enums.RouteTypeEnum;
  * @createDate  2018-04-17
  * @version     v1.0
  *              v2.0  2019-08-29  添加：fontColor 文字颜色的配置
+ *              v3.0  2024-04-23  添加：界面UI的4个字段
  */
 public class ActivityRoute extends BaseModel
 {
@@ -28,28 +29,28 @@ public class ActivityRoute extends BaseModel
     
     
     /** 主键ID */
-    private String activityRouteID;
+    private String                   activityRouteID;
     
     /** 活动路由Code。作为与外界交互的编码。同一版本的工作流下是惟一的，不同版本的同类工作流可以相同。 */
-    private String activityRouteCode;
+    private String                   activityRouteCode;
     
     /** 活动路由名称 */
-    private String activityRouteName;
+    private String                   activityRouteName;
     
     /** 工作流的模板ID */
-    private String templateID;
+    private String                   templateID;
     
     /** 工作流路由类型ID */
-    private RouteTypeEnum routeTypeID;
+    private RouteTypeEnum            routeTypeID;
     
     /** 工作流路由类型（内存合成） */
-    private RouteType routeType;
+    private RouteType                routeType;
     
     /** 工作流路由的参与人。谁从此路过。（内存合成） */
-    private List<Participant> participants;
+    private List<Participant>        participants;
     
     /** 本路由的参与人，是否为流程发起人。（内存合成） */
-    private Participant participantByCreater;
+    private Participant              participantByCreater;
     
     /**
      * 本路由的参与人，是否为另一个活动的实际操作人。（内存合成）
@@ -59,64 +60,76 @@ public class ActivityRoute extends BaseModel
     private Map<String ,Participant> participantByActivitys;
     
     /** 工作流活动ID */
-    private String activityID;
+    private String                   activityID;
     
     /** 工作流活动编码 */
-    private String activityCode;
+    private String                   activityCode;
     
     /** 路由A-B两端，从A到B的A端活动（内存合成） */
-    private ActivityInfo activity;
+    private ActivityInfo             activity;
     
     /** 下一活动ID。可以为不同工作流模板的活动。即支持子流程 */
-    private String nextActivityID;
+    private String                   nextActivityID;
     
     /** 下一活动编码 */
-    private String nextActivityCode;
+    private String                   nextActivityCode;
     
     /** 下一活动（内存合成） */
-    private ActivityInfo nextActivity;
+    private ActivityInfo             nextActivity;
     
     /** 有条件判定时，执行的XJava对象ID */
-    private String  conditionXJavaID;
+    private String                    conditionXJavaID;
     
     /** 有条件判定时，执行的对象方法名称 */
-    private String  conditionMethod;
+    private String                    conditionMethod;
     
     /** 有条件判定时，方法执行结果的对比值 */
-    private String  conditionValue;
+    private String                    conditionValue;
     
     /** 有条件判定时，对比值的数据类型（1:数字；2:布尔值；3:文本） */
-    private Integer conditionVType;
+    private Integer                   conditionVType;
     
     /** 路由连接线的颜色 */
-    private String  lineColor;
+    private String                    lineColor;
     
     /** 路由连接线的文字颜色 */
-    private String  fontColor;
+    private String                    fontColor;
     
     /** 备注说明 */
-    private String  infoComment;
+    private String                    infoComment;
     
     /** 创建人员ID */
-    private String  createrID;
+    private String                    createrID;
     
     /** 创建人员名称 */
-    private String  creater;
+    private String                    creater;
     
     /** 创建时间 */
-    private Date    createTime;
+    private Date                      createTime;
     
     /** 最后修改人员ID */
-    private String  lastUserID;
+    private String                    lastUserID;
     
     /** 最后修改人员名称 */
-    private String  lastUser;
+    private String                    lastUser;
     
     /** 最后修改时间 */
-    private Date    lastTime;
+    private Date                      lastTime;
     
     /** 权重。权重值越大，优先级越高 */
-    private Integer weight;
+    private Integer                   weight;
+    
+    /** 界面UI：来自节点具体的端点 */
+    private String                    fromPort;
+    
+    /** 界面UI：去往节点的具体端点 */
+    private String                    toPort;
+    
+    /** 界面UI：是否挂载条件 */
+    private Integer                   isHaveCondition;
+    
+    /** 界面UI：汇签类型路由的汇总值 */
+    private Double                    summaryValues;
     
     
     
@@ -809,6 +822,86 @@ public class ActivityRoute extends BaseModel
     public void setWeight(Integer i_Weight)
     {
         this.weight = i_Weight;
+    }
+
+
+    /**
+     * 获取：界面UI：来自节点具体的端点
+     */
+    public String getFromPort()
+    {
+        return fromPort;
+    }
+
+    
+    /**
+     * 设置：界面UI：来自节点具体的端点
+     * 
+     * @param i_FromPort 界面UI：来自节点具体的端点
+     */
+    public void setFromPort(String i_FromPort)
+    {
+        this.fromPort = i_FromPort;
+    }
+
+    
+    /**
+     * 获取：界面UI：去往节点的具体端点
+     */
+    public String getToPort()
+    {
+        return toPort;
+    }
+
+    
+    /**
+     * 设置：界面UI：去往节点的具体端点
+     * 
+     * @param i_ToPort 界面UI：去往节点的具体端点
+     */
+    public void setToPort(String i_ToPort)
+    {
+        this.toPort = i_ToPort;
+    }
+
+    
+    /**
+     * 获取：界面UI：是否挂载条件
+     */
+    public Integer getIsHaveCondition()
+    {
+        return isHaveCondition;
+    }
+
+
+    /**
+     * 设置：界面UI：是否挂载条件
+     * 
+     * @param i_IsHaveCondition 界面UI：是否挂载条件
+     */
+    public void setIsHaveCondition(Integer i_IsHaveCondition)
+    {
+        this.isHaveCondition = i_IsHaveCondition;
+    }
+
+    
+    /**
+     * 获取：界面UI：汇签类型路由的汇总值
+     */
+    public Double getSummaryValues()
+    {
+        return summaryValues;
+    }
+
+
+    /**
+     * 设置：界面UI：汇签类型路由的汇总值
+     * 
+     * @param i_SummaryValues 界面UI：汇签类型路由的汇总值
+     */
+    public void setSummaryValues(Double i_SummaryValues)
+    {
+        this.summaryValues = i_SummaryValues;
     }
 
 }

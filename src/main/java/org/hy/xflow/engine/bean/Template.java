@@ -13,6 +13,8 @@ import org.hy.xflow.engine.common.BaseModel;
  * @author      ZhengWei(HY)
  * @createDate  2018-04-17
  * @version     v1.0
+ *              v2.0  2024-04-23  添加：关联表单的表名称formTableName
+ *                                     归属公司编码companyCode
  */
 public class Template extends BaseModel
 {
@@ -23,43 +25,49 @@ public class Template extends BaseModel
     private ActivityRouteTree activityRouteTree;
     
     /** 模板ID */
-    private String templateID;
+    private String            templateID;
     
     /** 模板版本号（数值递增型） */
-    private Integer versionNo;
+    private Integer           versionNo;
     
     /** 模板版本号 */
-    private String version;
+    private String            version;
     
     /** 模板名称 */
-    private String templateName;
+    private String            templateName;
     
     /** 备注说明 */
-    private String infoComment;
+    private String            infoComment;
+    
+    /** 关联表单的表名称 */
+    private String            formTableName;
+    
+    /** 归属公司编码 */
+    private String            companyCode;
     
     /** 创建人员ID */
-    private String createrID;
+    private String            createrID;
     
     /** 创建人员名称 */
-    private String creater;
+    private String            creater;
     
     /** 创建时间 */
-    private Date createTime;
+    private Date              createTime;
     
     /** 最后修改人员ID */
-    private String lastUserID;
+    private String            lastUserID;
     
     /** 最后修改人员名称 */
-    private String lastUser;
+    private String            lastUser;
     
     /** 最后修改时间 */
-    private Date lastTime;
+    private Date              lastTime;
     
     /** 是否有效标记(0:无效；1:有效) */
-    private Integer isValid;
+    private Integer           isValid;
     
     /** 是否删除标记(0:未删除；1:已删除) */
-    private Integer isDelete;
+    private Integer           isDelete;
     
     
     
@@ -340,6 +348,46 @@ public class Template extends BaseModel
     public void setIsDelete(Integer i_IsDelete)
     {
         this.isDelete = i_IsDelete;
+    }
+
+    
+    /**
+     * 获取：关联表单的表名称
+     */
+    public String getFormTableName()
+    {
+        return formTableName;
+    }
+
+    
+    /**
+     * 设置：关联表单的表名称
+     * 
+     * @param i_FormTableName 关联表单的表名称
+     */
+    public void setFormTableName(String i_FormTableName)
+    {
+        this.formTableName = i_FormTableName;
+    }
+
+    
+    /**
+     * 获取：归属公司编码
+     */
+    public String getCompanyCode()
+    {
+        return companyCode;
+    }
+
+    
+    /**
+     * 设置：归属公司编码
+     * 
+     * @param i_CompanyCode 归属公司编码
+     */
+    public void setCompanyCode(String i_CompanyCode)
+    {
+        this.companyCode = i_CompanyCode;
     }
 
 }
