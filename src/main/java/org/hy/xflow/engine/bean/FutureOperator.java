@@ -13,6 +13,7 @@ import org.hy.xflow.engine.common.BaseModel;
  * @createDate  2019-09-11
  * @version     v1.0
  *              v2.0  2020-01-16  添加：equals() 方法的判定
+ *              v3.0  2024-05-06  添加：templateName、activityCode
  */
 public class FutureOperator extends BaseModel
 {
@@ -36,6 +37,12 @@ public class FutureOperator extends BaseModel
     
     /** 参与者ID */
     private String  objectID;
+    
+    /** 模板名称（用于查询） */
+    private String  templateName;
+    
+    /** 工作流活动Code（用于查询）。作为与外界交互的编码。同一版本的工作流下是惟一的，不同版本的同类工作流可以相同。 */
+    private String  activityCode;
     
     
     
@@ -78,7 +85,7 @@ public class FutureOperator extends BaseModel
     /**
      * 设置：工作流实例ID
      * 
-     * @param workID 
+     * @param workID
      */
     public void setWorkID(String workID)
     {
@@ -89,7 +96,7 @@ public class FutureOperator extends BaseModel
     /**
      * 设置：第三方使用系统的业务数据ID。即支持用第三方ID也能找到工作流信息
      * 
-     * @param serviceDataID 
+     * @param serviceDataID
      */
     public void setServiceDataID(String serviceDataID)
     {
@@ -100,7 +107,7 @@ public class FutureOperator extends BaseModel
     /**
      * 设置：参与者类型
      * 
-     * @param objectType 
+     * @param objectType
      */
     public void setObjectType(Integer objectType)
     {
@@ -111,7 +118,7 @@ public class FutureOperator extends BaseModel
     /**
      * 设置：参与者ID
      * 
-     * @param objectID 
+     * @param objectID
      */
     public void setObjectID(String objectID)
     {
@@ -131,7 +138,7 @@ public class FutureOperator extends BaseModel
     /**
      * 设置：工作流的过程ID
      * 
-     * @param processID 
+     * @param processID
      */
     public void setProcessID(String processID)
     {
@@ -151,7 +158,7 @@ public class FutureOperator extends BaseModel
     /**
      * 设置：分单前的过程ID。合单前持续记录ID值
      * 
-     * @param splitProcessID 
+     * @param splitProcessID
      */
     public void setSplitProcessID(String splitProcessID)
     {
@@ -159,6 +166,45 @@ public class FutureOperator extends BaseModel
     }
 
     
+    /**
+     * 获取：模板名称（用于查询）
+     */
+    public String getTemplateName()
+    {
+        return templateName;
+    }
+
+    
+    /**
+     * 设置：模板名称（用于查询）
+     * 
+     * @param i_TemplateName 模板名称（用于查询）
+     */
+    public void setTemplateName(String i_TemplateName)
+    {
+        this.templateName = i_TemplateName;
+    }
+
+    
+    /**
+     * 获取：工作流活动Code（用于查询）。作为与外界交互的编码。同一版本的工作流下是惟一的，不同版本的同类工作流可以相同。
+     */
+    public String getActivityCode()
+    {
+        return activityCode;
+    }
+
+    
+    /**
+     * 设置：工作流活动Code（用于查询）。作为与外界交互的编码。同一版本的工作流下是惟一的，不同版本的同类工作流可以相同。
+     * 
+     * @param i_ActivityCode 工作流活动Code（用于查询）。作为与外界交互的编码。同一版本的工作流下是惟一的，不同版本的同类工作流可以相同。
+     */
+    public void setActivityCode(String i_ActivityCode)
+    {
+        this.activityCode = i_ActivityCode;
+    }
+
 
     /**
      *
