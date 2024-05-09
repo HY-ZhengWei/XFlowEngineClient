@@ -63,7 +63,7 @@ public class Participant extends UserParticipant
         v_NewPart.init(this);
         v_NewPart.setObjectID(  i_Flow.getCreaterID());
         v_NewPart.setObjectName(i_Flow.getCreater());
-        v_NewPart.setObjectType(ParticipantTypeEnum.$User);
+        v_NewPart.setObjectTypeEnum(ParticipantTypeEnum.$User);
         
         return v_NewPart;
     }
@@ -87,7 +87,7 @@ public class Participant extends UserParticipant
         v_NewPart.init(this);
         v_NewPart.setObjectID(  i_Process.getOperateUserID());
         v_NewPart.setObjectName(i_Process.getOperateUser());
-        v_NewPart.setObjectType(ParticipantTypeEnum.$User);
+        v_NewPart.setObjectTypeEnum(ParticipantTypeEnum.$User);
         
         return v_NewPart;
     }

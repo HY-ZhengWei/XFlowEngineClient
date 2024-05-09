@@ -57,7 +57,7 @@ public class ProcessParticipant extends Participant
     {
         this.objectID       = i_UserPart.getObjectID();
         this.objectName     = i_UserPart.getObjectName();
-        this.objectType     = i_UserPart.getObjectType();
+        this.objectType     = i_UserPart.getObjectTypeEnum();
         this.objectNo       = i_UserPart.getObjectNo();
         
         return this;
@@ -90,7 +90,7 @@ public class ProcessParticipant extends Participant
         this.createOrg      = i_User.getOrgName();
         this.objectID       = i_UserPart.getObjectID();
         this.objectName     = i_UserPart.getObjectName();
-        this.objectType     = i_UserPart.getObjectType();
+        this.objectType     = i_UserPart.getObjectTypeEnum();
         this.objectNo       = i_UserPart.getObjectNo();
         
         return this;

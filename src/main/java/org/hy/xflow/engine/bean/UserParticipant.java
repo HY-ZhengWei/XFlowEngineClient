@@ -30,26 +30,73 @@ public class UserParticipant extends BaseModel
     /** 参与者名称 */
     protected String              objectName;
     
-    /** 
+    /**
      * 参与者序号，表示前后顺序。系统自动生成，下标从1开始。
      * 
      * 当外界指定时，系统不在生成。
      * 
-     * 当驳回时此值为 0 ，表示原操作者有优先处理权。 
+     * 当驳回时此值为 0 ，表示原操作者有优先处理权。
      */
     protected Integer             objectNo;
     
     
     
     /**
+     * 参与类型
+     * 
+     * @author      ZhengWei(HY)
+     * @createDate  2024-05-09
+     * @version     v1.0
+     *
+     * @return
+     */
+    public Integer getObjectType()
+    {
+        if ( this.objectType != null )
+        {
+            return objectType.getValue();
+        }
+        else
+        {
+            return null;
+        }
+    }
+    
+    
+    
+    public void setObjectType(Integer i_ObjectType)
+    {
+        if ( i_ObjectType != null )
+        {
+            this.objectType = ParticipantTypeEnum.get(i_ObjectType);
+        }
+        else
+        {
+            this.objectType = null;
+        }
+    }
+    
+    
+    
+    /**
      * 获取：参与者类型
      */
-    public ParticipantTypeEnum getObjectType()
+    public ParticipantTypeEnum getObjectTypeEnum()
     {
         return objectType;
     }
     
-
+    
+    
+    /**
+     * 设置：参与者类型
+     */
+    public void setObjectTypeEnum(ParticipantTypeEnum i_ParticipantTypeEnum)
+    {
+        this.objectType = i_ParticipantTypeEnum;
+    }
+    
+    
     
     /**
      * 获取：参与者ID
@@ -72,21 +119,9 @@ public class UserParticipant extends BaseModel
 
     
     /**
-     * 设置：参与者类型
-     * 
-     * @param objectType 
-     */
-    public void setObjectType(ParticipantTypeEnum objectType)
-    {
-        this.objectType = objectType;
-    }
-    
-
-    
-    /**
      * 设置：参与者ID
      * 
-     * @param objectID 
+     * @param objectID
      */
     public void setObjectID(String objectID)
     {
@@ -98,7 +133,7 @@ public class UserParticipant extends BaseModel
     /**
      * 设置：参与者名称
      * 
-     * @param objectName 
+     * @param objectName
      */
     public void setObjectName(String objectName)
     {
@@ -112,7 +147,7 @@ public class UserParticipant extends BaseModel
      * 
      * 当外界指定时，系统不在生成。
      * 
-     * 当驳回时此值为 0 ，表示原操作者有优先处理权。 
+     * 当驳回时此值为 0 ，表示原操作者有优先处理权。
      */
     public Integer getObjectNo()
     {
@@ -126,9 +161,9 @@ public class UserParticipant extends BaseModel
      * 
      * 当外界指定时，系统不在生成。
      * 
-     * 当驳回时此值为 0 ，表示原操作者有优先处理权。 
+     * 当驳回时此值为 0 ，表示原操作者有优先处理权。
      * 
-     * @param objectNo 
+     * @param objectNo
      */
     public void setObjectNo(Integer objectNo)
     {

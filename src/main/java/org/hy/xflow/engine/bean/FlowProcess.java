@@ -394,32 +394,32 @@ public class FlowProcess extends BaseModel
         
         for (Participant v_Participant : this.participants)
         {
-            if ( ParticipantTypeEnum.$ExcludeUser     == v_Participant.getObjectType()
-              || ParticipantTypeEnum.$ExcludeUserSend == v_Participant.getObjectType() )
+            if ( ParticipantTypeEnum.$ExcludeUser     == v_Participant.getObjectTypeEnum()
+              || ParticipantTypeEnum.$ExcludeUserSend == v_Participant.getObjectTypeEnum() )
             {
                 if ( v_Participant.getObjectID().equals(i_User.getUserID()) )
                 {
                     return null;
                 }
             }
-            else if ( ParticipantTypeEnum.$User     == v_Participant.getObjectType()
-                   || ParticipantTypeEnum.$UserSend == v_Participant.getObjectType() )
+            else if ( ParticipantTypeEnum.$User     == v_Participant.getObjectTypeEnum()
+                   || ParticipantTypeEnum.$UserSend == v_Participant.getObjectTypeEnum() )
             {
                 if ( v_Participant.getObjectID().equals(i_User.getUserID()) )
                 {
                     return v_Participant;
                 }
             }
-            else if ( ParticipantTypeEnum.$Org     == v_Participant.getObjectType()
-                   || ParticipantTypeEnum.$OrgSend == v_Participant.getObjectType() )
+            else if ( ParticipantTypeEnum.$Org     == v_Participant.getObjectTypeEnum()
+                   || ParticipantTypeEnum.$OrgSend == v_Participant.getObjectTypeEnum() )
             {
                 if ( v_Participant.getObjectID().equals(i_User.getOrgID()) )
                 {
                     return v_Participant;
                 }
             }
-            else if ( ParticipantTypeEnum.$Role     == v_Participant.getObjectType()
-                   || ParticipantTypeEnum.$RoleSend == v_Participant.getObjectType() )
+            else if ( ParticipantTypeEnum.$Role     == v_Participant.getObjectTypeEnum()
+                   || ParticipantTypeEnum.$RoleSend == v_Participant.getObjectTypeEnum() )
             {
                 if ( Help.isNull(i_User.getRoles()) )
                 {
