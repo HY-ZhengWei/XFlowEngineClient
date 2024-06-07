@@ -14,6 +14,7 @@ import org.hy.xflow.engine.enums.ParticipantTypeEnum;
  * @author      ZhengWei(HY)
  * @createDate  2023-07-26
  * @version     v1.0
+ *              v2.0  2024-06-06  修正：枚举类型与JSON相互转换的问题
  */
 public class FlowComment extends BaseModel
 {
@@ -220,12 +221,48 @@ public class FlowComment extends BaseModel
     {
         this.commentFiles = i_CommentFiles;
     }
+    
+    
+    /**
+     * 获取：参与者类型
+     * 
+     * @return
+     */
+    public Integer getObjectType()
+    {
+        if ( this.objectType != null )
+        {
+            return objectType.getValue();
+        }
+        else
+        {
+            return null;
+        }
+    }
+    
+    
+    /**
+     * 设置：参与者类型
+     * 
+     * @param i_ObjectType 参与者类型
+     */
+    public void setObjectType(Integer i_ObjectType)
+    {
+        if ( i_ObjectType != null )
+        {
+            this.objectType = ParticipantTypeEnum.get(i_ObjectType);
+        }
+        else
+        {
+            this.objectType = null;
+        }
+    }
 
     
     /**
      * 获取：参与者类型
      */
-    public ParticipantTypeEnum getObjectType()
+    public ParticipantTypeEnum getObjectTypeEnum()
     {
         return objectType;
     }
@@ -236,7 +273,7 @@ public class FlowComment extends BaseModel
      * 
      * @param i_ObjectType 参与者类型
      */
-    public void setObjectType(ParticipantTypeEnum i_ObjectType)
+    public void setObjectTypeEnum(ParticipantTypeEnum i_ObjectType)
     {
         this.objectType = i_ObjectType;
     }

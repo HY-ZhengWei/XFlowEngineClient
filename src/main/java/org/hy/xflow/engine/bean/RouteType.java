@@ -13,6 +13,7 @@ import org.hy.xflow.engine.enums.RouteTypeEnum;
  * @author      ZhengWei(HY)
  * @createDate  2018-04-24
  * @version     v1.0
+ *              v2.0  2024-06-06  修正：枚举类型与JSON相互转换的问题
  */
 public class RouteType extends BaseModel
 {
@@ -37,7 +38,39 @@ public class RouteType extends BaseModel
     /**
      * 获取：工作流路由类型ID
      */
-    public RouteTypeEnum getRouteTypeID()
+    public String getRouteTypeID()
+    {
+        if ( this.routeTypeID != null )
+        {
+            return this.routeTypeID.getValue();
+        }
+        else
+        {
+            return null;
+        }
+    }
+    
+    
+    /**
+     * 获取：工作流路由类型
+     */
+    public void setRouteTypeID(String i_RouteTypeID)
+    {
+        if ( i_RouteTypeID != null )
+        {
+            this.routeTypeID = RouteTypeEnum.get(i_RouteTypeID);
+        }
+        else
+        {
+            this.routeTypeID = null;
+        }
+    }
+    
+    
+    /**
+     * 获取：工作流路由类型ID
+     */
+    public RouteTypeEnum getRouteTypeIDEnum()
     {
         return routeTypeID;
     }
@@ -57,7 +90,7 @@ public class RouteType extends BaseModel
      * 
      * @param routeTypeID
      */
-    public void setRouteTypeID(RouteTypeEnum routeTypeID)
+    public void setRouteTypeIDEnum(RouteTypeEnum routeTypeID)
     {
         this.routeTypeID = routeTypeID;
     }

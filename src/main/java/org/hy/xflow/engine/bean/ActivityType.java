@@ -13,6 +13,7 @@ import org.hy.xflow.engine.enums.ActivityTypeEnum;
  * @author      ZhengWei(HY)
  * @createDate  2018-04-17
  * @version     v1.0
+ *              v2.0  2024-06-06  修正：枚举类型与JSON相互转换的问题
  */
 public class ActivityType extends BaseModel
 {
@@ -34,9 +35,41 @@ public class ActivityType extends BaseModel
     
     
     /**
+     * 获取：活动类型ID
+     */
+    public String getActivityTypeID()
+    {
+        if ( this.activityTypeID != null )
+        {
+            return this.activityTypeID.getValue();
+        }
+        else
+        {
+            return null;
+        }
+    }
+    
+    
+    /**
+     * 设置：活动类型ID
+     */
+    public void setActivityTypeID(String i_ActivityTypeID)
+    {
+        if ( i_ActivityTypeID != null )
+        {
+            this.activityTypeID = ActivityTypeEnum.get(i_ActivityTypeID);
+        }
+        else
+        {
+            this.activityTypeID = null;
+        }
+    }
+    
+    
+    /**
      * 获取：工作流活动类型ID
      */
-    public ActivityTypeEnum getActivityTypeID()
+    public ActivityTypeEnum getActivityTypeIDEnum()
     {
         return this.activityTypeID;
     }
@@ -47,7 +80,7 @@ public class ActivityType extends BaseModel
      * 
      * @param i_ActivityTypeID
      */
-    public void setActivityTypeID(ActivityTypeEnum i_ActivityTypeID)
+    public void setActivityTypeIDEnum(ActivityTypeEnum i_ActivityTypeID)
     {
         this.activityTypeID = i_ActivityTypeID;
     }

@@ -22,6 +22,7 @@ import org.hy.xflow.engine.enums.RouteTypeEnum;
  * @version     v1.0
  *              v2.0  2019-08-29  添加：fontColor 文字颜色的配置
  *              v3.0  2024-04-23  添加：界面UI的4个字段
+ *              v4.0  2024-06-06  修正：枚举类型与JSON相互转换的问题
  */
 public class ActivityRoute extends BaseModel
 {
@@ -402,9 +403,52 @@ public class ActivityRoute extends BaseModel
     /**
      * 获取：工作流路由类型ID
      */
-    public RouteTypeEnum getRouteTypeID()
+    public String getRouteTypeID()
+    {
+        if ( this.routeTypeID != null )
+        {
+            return this.routeTypeID.getValue();
+        }
+        else
+        {
+            return null;
+        }
+    }
+    
+    
+    /**
+     * 获取：工作流路由类型（内存合成）
+     */
+    public void setRouteTypeID(String i_RouteTypeID)
+    {
+        if ( i_RouteTypeID != null )
+        {
+            this.routeTypeID = RouteTypeEnum.get(i_RouteTypeID);
+        }
+        else
+        {
+            this.routeTypeID = null;
+        }
+    }
+    
+    
+    /**
+     * 获取：工作流路由类型ID
+     */
+    public RouteTypeEnum getRouteTypeIDEnum()
     {
         return routeTypeID;
+    }
+    
+    
+    /**
+     * 设置：工作流路由类型ID
+     * 
+     * @param routeTypeID
+     */
+    public void setRouteTypeIDEnum(RouteTypeEnum routeTypeID)
+    {
+        this.routeTypeID = routeTypeID;
     }
     
     
@@ -414,6 +458,17 @@ public class ActivityRoute extends BaseModel
     public RouteType getRouteType()
     {
         return routeType;
+    }
+
+    
+    /**
+     * 设置：工作流路由类型（内存合成）
+     * 
+     * @param routeType
+     */
+    public void setRouteType(RouteType routeType)
+    {
+        this.routeType = routeType;
     }
     
     
@@ -480,28 +535,6 @@ public class ActivityRoute extends BaseModel
     public void setParticipantByActivitys(Map<String ,Participant> participantByActivitys)
     {
         this.participantByActivitys = participantByActivitys;
-    }
-
-
-    /**
-     * 设置：工作流路由类型ID
-     * 
-     * @param routeTypeID
-     */
-    public void setRouteTypeID(RouteTypeEnum routeTypeID)
-    {
-        this.routeTypeID = routeTypeID;
-    }
-
-    
-    /**
-     * 设置：工作流路由类型（内存合成）
-     * 
-     * @param routeType
-     */
-    public void setRouteType(RouteType routeType)
-    {
-        this.routeType = routeType;
     }
 
 

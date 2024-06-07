@@ -237,7 +237,7 @@ public class FlowProcess extends BaseModel
         this.previousActivityID      = io_Previous.getCurrentActivityID();
         this.previousActivityCode    = io_Previous.getCurrentActivityCode();
         this.previousActivityName    = io_Previous.getCurrentActivityName();
-        this.previousOperateTypeID   = i_Route.getRouteType().getRouteTypeID().getValue();
+        this.previousOperateTypeID   = i_Route.getRouteType().getRouteTypeIDEnum().getValue();
         
         io_Previous.nextProcessID    = this.processID;
         io_Previous.nextActivityID   = this.currentActivityID;
@@ -266,7 +266,7 @@ public class FlowProcess extends BaseModel
         
         io_Previous.operateTime      = this.createTime;
         io_Previous.operateTimeLen   = 0;
-        io_Previous.operateTypeID    = i_Route.getRouteType().getRouteTypeID().getValue();
+        io_Previous.operateTypeID    = i_Route.getRouteType().getRouteTypeIDEnum().getValue();
         io_Previous.operateType      = i_Route.getRouteType().getRouteType();
         io_Previous.operateUserID    = this.createrID;
         io_Previous.operateUser      = this.creater;

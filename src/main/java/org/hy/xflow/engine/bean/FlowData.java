@@ -16,6 +16,7 @@ import org.hy.xflow.engine.enums.RejectModeEnum;
  * @createDate  2018-05-17
  * @version     v1.0
  *              v2.0  2019-09-19  添加：汇总值、汇总人数、操作文件、操作数据、备注说明
+ *              v2.0  2024-06-06  修正：枚举类型与JSON相互转换的问题
  */
 public class FlowData extends BaseModel
 {
@@ -49,13 +50,13 @@ public class FlowData extends BaseModel
     private List<UserParticipant>      participants;
     
     /** 多路并发的流转信息 */
-    List<FlowDataRoute>                routes;
+    private List<FlowDataRoute>        routes;
     
     /** 多路并发的自由驳回的流转信息（未在工作流模板上预先配置驳回路由） */
-    List<FlowDataActivity>             activitys;
+    private List<FlowDataActivity>     activitys;
     
     /** 驳回模式。auto:自动模式；team：协同模式 */
-    RejectModeEnum                     rejectMode;
+    private RejectModeEnum             rejectMode;
     
     /** 汇总值 */
     private Double                     summary;
@@ -404,13 +405,49 @@ public class FlowData extends BaseModel
     {
         this.activityCode = i_ActivityCode;
     }
+    
+    
+    /**
+     * 获取：驳回模式。auto:自动模式；team：协同模式
+     * 
+     * @return
+     */
+    public String getRejectMode()
+    {
+        if ( this.rejectMode != null )
+        {
+            return rejectMode.getValue();
+        }
+        else
+        {
+            return null;
+        }
+    }
+    
+    
+    /**
+     * 设置：驳回模式。auto:自动模式；team：协同模式
+     * 
+     * @param i_RejectMode 驳回模式。auto:自动模式；team：协同模式
+     */
+    public void setRejectMode(String i_RejectMode)
+    {
+        if ( i_RejectMode != null )
+        {
+            this.rejectMode = RejectModeEnum.get(i_RejectMode);
+        }
+        else
+        {
+            this.rejectMode = null;
+        }
+    }
 
 
     
     /**
      * 获取：驳回模式。auto:自动模式；team：协同模式
      */
-    public RejectModeEnum getRejectMode()
+    public RejectModeEnum getRejectModeEnum()
     {
         return rejectMode;
     }
@@ -422,7 +459,7 @@ public class FlowData extends BaseModel
      * 
      * @param i_RejectMode 驳回模式。auto:自动模式；team：协同模式
      */
-    public void setRejectMode(RejectModeEnum i_RejectMode)
+    public void setRejectModeEnum(RejectModeEnum i_RejectMode)
     {
         this.rejectMode = i_RejectMode;
     }

@@ -16,6 +16,7 @@ import org.hy.xflow.engine.enums.ParticipantTypeEnum;
  * @author      ZhengWei(HY)
  * @createDate  2018-05-28
  * @version     v1.0
+ *              v2.0  2024-06-06  修正：枚举类型与JSON相互转换的问题
  */
 public class NextRoutes extends BaseModel
 {
@@ -209,13 +210,49 @@ public class NextRoutes extends BaseModel
     {
         this.summarys = summarys;
     }
-
+    
+    
+    
+    /**
+     * 获取：当前查询人的参与类型
+     */
+    public Integer getParticipantType()
+    {
+        if ( this.participantType != null )
+        {
+            return participantType.getValue();
+        }
+        else
+        {
+            return null;
+        }
+    }
+    
+    
+    
+    /**
+     * 设置：当前查询人的参与类型
+     * 
+     * @param i_ParticipantType 当前查询人的参与类型
+     */
+    public void setParticipantType(Integer i_ParticipantType)
+    {
+        if ( i_ParticipantType != null )
+        {
+            this.participantType = ParticipantTypeEnum.get(i_ParticipantType);
+        }
+        else
+        {
+            this.participantType = null;
+        }
+    }
+    
 
     
     /**
      * 获取：当前查询人的参与类型
      */
-    public ParticipantTypeEnum getParticipantType()
+    public ParticipantTypeEnum getParticipantTypeEnum()
     {
         return participantType;
     }
@@ -227,7 +264,7 @@ public class NextRoutes extends BaseModel
      * 
      * @param i_ParticipantType 当前查询人的参与类型
      */
-    public void setParticipantType(ParticipantTypeEnum i_ParticipantType)
+    public void setParticipantTypeEnum(ParticipantTypeEnum i_ParticipantType)
     {
         this.participantType = i_ParticipantType;
     }

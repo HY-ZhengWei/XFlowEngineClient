@@ -14,6 +14,7 @@ import org.hy.xflow.engine.enums.ParticipantTypeEnum;
  * @author      ZhengWei(HY)
  * @createDate  2018-05-08
  * @version     v1.0
+ *              v2.0  2024-06-06  修正：枚举类型与JSON相互转换的问题
  */
 public class UserParticipant extends BaseModel
 {
