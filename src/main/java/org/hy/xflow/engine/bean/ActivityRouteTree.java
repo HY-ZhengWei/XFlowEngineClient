@@ -8,6 +8,7 @@ import org.hy.common.Help;
 import org.hy.common.PartitionMap;
 import org.hy.common.TablePartition;
 import org.hy.common.TablePartitionRID;
+import org.hy.common.xml.log.Logger;
 import org.hy.xflow.engine.common.BaseModel;
 import org.hy.xflow.engine.enums.ActivityTypeEnum;
 
@@ -31,6 +32,8 @@ public class ActivityRouteTree extends BaseModel
 {
     
     private static final long serialVersionUID = 5366730038571520921L;
+    
+    private static final Logger $Logger = new Logger(ActivityRouteTree.class);
     
     /** 自动流转时的路由标示 */
     public static final String $AutoActivityRouteCode = "AUTO";
@@ -96,7 +99,7 @@ public class ActivityRouteTree extends BaseModel
             this.startActivity = this.allActivitys.values().iterator().next();
             for (ActivityInfo v_Activity : this.allActivitys.values())
             {
-                if ( ActivityTypeEnum.$Finish.equals(v_Activity.getActivityTypeID()) )
+                if ( ActivityTypeEnum.$Finish.equals(v_Activity.getActivityTypeIDEnum()) )
                 {
                     this.endActivitys.put(v_Activity.getActivityID() ,v_Activity);
                 }
@@ -267,6 +270,7 @@ public class ActivityRouteTree extends BaseModel
           || this.startActivity == null
           || Help.isNull(this.endActivitys) )
         {
+            $Logger.error("按活动路由生成活动路由树失败：配置数据不完整或系统异常");
             return;
         }
         

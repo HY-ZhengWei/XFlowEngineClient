@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.hy.common.Date;
 import org.hy.common.Help;
+import org.hy.common.xml.log.Logger;
 import org.hy.xflow.engine.common.BaseModel;
 import org.hy.xflow.engine.enums.ActivityTypeEnum;
 import org.hy.xflow.engine.enums.ParticipantTypeEnum;
@@ -26,6 +27,9 @@ import org.hy.xflow.engine.enums.ParticipantTypeEnum;
 public class ActivityInfo extends BaseModel
 {
     private static final long serialVersionUID = -4724247321457107633L;
+    
+    private static final Logger $Logger = new Logger(ActivityInfo.class);
+    
     
     
     /** 本活动组件（节点）的参与人。谁从此路过。（内存合成） */
@@ -182,6 +186,7 @@ public class ActivityInfo extends BaseModel
         }
         if ( Help.isNull(this.participants) )
         {
+            $Logger.error("活动节点id=" + this.activityID + " code=" + this.activityCode + " 没有配置参与人或系统错误");
             return null;
         }
         
